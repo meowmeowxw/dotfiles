@@ -1,0 +1,56 @@
+URxvt.font: xft:Hack:size=10
+! Colors
+
+!urxvt*background:           #00001a
+!urxvt*foreground:           #F0F0F0
+!urxvt*cursorColor:          #6699CC
+!color htop
+!urxvt*colorBD:              #4a59bf
+
+!Visiblue
+!urxvt*color0:               #333366
+!urxvt*color8:               #4d4d9b
+!color for the selection
+!urxvt*color1:               #274da5
+!urxvt*color9:               #1e4491
+!color 10 { } vim
+!urxvt*color2:               #0099CC
+!urxvt*color10:              #76b1e2
+
+!urxvt*color3:               #3366CC
+!urxvt*color11:              #6699FF
+
+!urxvt*color4:               #006699
+!urxvt*color12:              #0099CC
+
+!urxvt*color5:               #0066FF
+!urxvt*color13:              #0099FF
+!color for cmus 55e8db
+!urxvt*color6:               #447ea3
+!urxvt*color14:              #66CCCC
+
+!urxvt*color7:               #99CCCC
+!urxvt*color15:		    #62dae0
+
+
+URxvt.keysym.Shift-Control-V: eval:paste_clipboard
+URxvt.keysym.Shift-Control-C: eval:selection_to_clipboard
+URxvt.perl-ext-common: font-size
+URxvt.keysym.C-Up:     font-size:increase
+URxvt.keysym.C-Down:   font-size:decrease
+URxvt*scrollBar: true     
+! scrollbar width
+URxvt*thickness: 7
+! scrollbar color black
+URxvt*scrollColor: #1E1E1E
+! scrollbar to the right
+URxvt*scrollBar_right: true
+! scrollbar style
+URxvt*scrollstyle: plain
+URxvt.transparent: true
+URxvt.shading :8
+!URxvt*depth: 32
+!URxvt*background: rgba:0000/0000/0200/c800
+!fade the inactive terminal
+URxvt*fading:15	
+

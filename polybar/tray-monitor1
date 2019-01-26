@@ -1,0 +1,130 @@
+;==========================================================
+;
+;
+;   ██████╗  ██████╗ ██╗  ██╗   ██╗██████╗  █████╗ ██████╗
+;   ██╔══██╗██╔═══██╗██║  ╚██╗ ██╔╝██╔══██╗██╔══██╗██╔══██╗
+;   ██████╔╝██║   ██║██║   ╚████╔╝ ██████╔╝███████║██████╔╝
+;   ██╔═══╝ ██║   ██║██║    ╚██╔╝  ██╔══██╗██╔══██║██╔══██╗
+;   ██║     ╚██████╔╝███████╗██║   ██████╔╝██║  ██║██║  ██║
+;   ╚═╝      ╚═════╝ ╚══════╝╚═╝   ╚═════╝ ╚═╝  ╚═╝╚═╝  ╚═╝
+;
+;
+;   To learn more about how to configure Polybar
+;   go to https://github.com/jaagr/polybar
+;
+;   The README contains alot of information
+;
+;==========================================================
+
+[colors]
+;background = ${xrdb:color0:#222}
+;background = #f4f2f2
+;background-alt = #444
+;foreground = ${xrdb:color7:#222}
+;foreground = #161313
+;foreground-alt = #555
+;primary = #ffb52a
+;secondary = #e60053
+;alert = #bd2c40
+background = ${xrdb:color0:#222}
+foreground = ${xrdb:color7:#222}
+foreground-alt = ${xrdb:color7:#222}
+primary = ${xrdb:color1:#222}
+secondary = ${xrdb:color2:#222}
+alert = ${xrdb:color3:#222}
+
+[bar/example]
+monitor = VGA-0
+width = 100%
+height = 22
+;offset-x = 1%
+;offset-y = 1%
+radius = 12.0
+fixed-center = false
+
+background = ${colors.background}
+foreground = ${colors.foreground}
+
+line-size = 2
+line-color = #f00
+
+border-size = 2 
+border-color = #00000000
+
+padding-left = 3
+padding-right = 3
+
+module-margin-left = 1
+module-margin-right = 2
+
+font-0 = System San Francisco Display:pixelsize=10;1
+font-1 = unifont:fontformat=truetype:size=8:antialias=false;0
+font-2 = siji:pixelsize=10;1
+font-3 = FontAwesome:style=Regular:pizelsize=10
+
+modules-left = wlan get-ip
+modules-center = info-ssh-sessions vpn-anyconnect
+modules-right = system-uptime-pretty
+
+tray-position = right 
+tray-padding = 2
+tray-transparent = false
+tray-background = #0a0a0a
+
+;wm-restack = bspwm
+;wm-restack = i3
+
+;override-redirect = true
+
+;scroll-up = bspwm-desknext
+;scroll-down = bspwm-deskprev
+
+;scroll-up = i3wm-wsnext
+;scroll-down = i3wm-wsprev
+
+cursor-click = pointer
+cursor-scroll = ns-resize
+bottom=true
+[module/system-uptime-pretty]
+type = custom/script
+exec = ~/.config/polybar/script/uptime.sh
+interval = 10
+
+[module/vpn-anyconnect]
+type=custom/script
+exec=~/.config/polybar/script/vpn-anyconnect.sh
+interval=5
+
+[module/info-ssh-sessions]
+type = custom/script
+exec = ~/.config/polybar/script/info-ssh-sessions.sh
+interval = 5
+
+[module/wlan]
+type = internal/network
+interface = wlxa0f3c11bc5ad
+interval = 3.0
+
+format-connected = <ramp-signal> <label-connected>
+format-connected-underline = ${colors.secondary}
+label-connected = %essid%
+
+format-disconnected =
+;format-disconnected = <label-disconnected>
+;format-disconnected-underline = ${self.format-connected-underline}
+;label-disconnected = %ifname% disconnected
+;label-disconnected-foreground = ${colors.foreground-alt}
+
+ramp-signal-0 = 
+ramp-signal-1 = 
+ramp-signal-2 = 
+ramp-signal-3 = 
+ramp-signal-4 = 
+ramp-signal-foreground = ${colors.foreground-alt}
+
+[module/get-ip]
+type=custom/script
+exec=~/.config/polybar/script/get-ip.sh
+interval=5
+
+

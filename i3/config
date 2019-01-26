@@ -31,8 +31,7 @@ font pango:monospace 8
 floating_modifier $mod
 
 # start a terminal
-bindsym $mod+Return exec urxvt
-
+bindsym $mod+Return exec st
 # kill focused window
 bindsym $mod+Shift+q kill
 
@@ -74,7 +73,7 @@ bindsym $mod+h split h
 bindsym $mod+v split v
 
 # enter fullscreen mode for the focused container
-bindsym $mod+f fullscreen toggle
+bindsym $mod+Shift+f fullscreen toggle
 
 # change container layout (stacked, tabbed, toggle split)
 bindsym $mod+s layout stacking
@@ -92,16 +91,16 @@ bindsym $mod+a focus parent
 
 # focus the child container
 
-set $workspace1 "1 Terminal "
-set $workspace2 "2 Firefox "
-set $workspace3 "3 Coding "
+set $workspace1 "1 "
+set $workspace2 "2 "
+set $workspace3 "3 "
 set $workspace4 "4 "
 set $workspace5 "5 "
 set $workspace6 "6 "
 set $workspace7 "7 "
-set $workspace8 "8 "
-set $workspace9 "9 Bho "
-set $workspace0 "0 Stuff "
+set $workspace8 "8 "
+set $workspace9 "9 "
+set $workspace0 "0 "
 
 # switch to workspace
 bindsym $mod+1 workspace $workspace1
@@ -124,17 +123,11 @@ bindsym $mod+Shift+5 move container to workspace $workspace5
 bindsym $mod+Shift+6 move container to workspace $workspace6
 bindsym $mod+Shift+7 move container to workspace $workspace7
 bindsym $mod+Shift+8 move container to workspace $workspace8
-bindsym $mod+Shift+9 move container to workspace $worksapce9
+bindsym $mod+Shift+9 move container to workspace $workspace9
 bindsym $mod+Shift+0 move container to workspace $workspace0
 
-#assign [class="Xfce4-terminal"] $workspace1
 assign [class="Firefox"] $workspace2
-#assign [class="Code"] $workspace3
-#assign [class="Vmware"] $workspace4
-assign [class="Wireshark"] $workspace5
-#assign [class="Nemo"] $workspace6
-assign [class="Amarok"] $workspace7
-#assign [class="libreoffice-startcenter"] $workspace8
+assign [class="Telegram"] $workspace8 
 # reload the configuration file
 bindsym $mod+Shift+c reload
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
@@ -167,22 +160,24 @@ mode "resize" {
 }
 
 bindsym $mod+r mode "resize"
-
 #set the wallpaper
-#exec_always feh --bg-scale $home/pictures/wallpaper/red-city.jpg
-exec_always wal -i $home/pictures/wallpaper/cyberpunk2.jpg
+exec_always wal -i ~/pictures/wallpaper/japan4.jpg -b 0a0a0a 
 exec_always cp $home/.Xresources.origin $home/.Xresources 
 exec_always cat $home/.cache/wal/colors.Xresources >> $home/.Xresources
+#copy pywal color to the colors of vis (music visualizer)
 exec_always cp $home/.cache/wal/colors $home/.config/vis/colors/pywal
 exec_always xrdb $home/.Xresources
-
+exec_always xset +fp /home/giovanni/.fonts
+exec_always xset fp rehash
 set_from_resource $bg-color i3wm.color2 #9e062c
 set_from_resource $text-color i3wm.color7 #e8f2f1
-set $inactive-bg-color   #000700
+set_from_resource $text-bar-color i3wm.color20 #a57c7c
+set_from_resource $separator-color i3wm.color5 #e8f2f1
+set $inactive-bg-color #000700
 set $inactive-text-color #e8f2f1
 set $urgent-bg-color     #26748e
-set $bar-color           #00050f
-set $indicator 		 #2cbab0
+set $bar-color #00050f
+set_from_resource $indicator i3wm.color6 #2cbab0
 # window colors
 #                       border              background         text                 indicator
 client.focused          $bg-color           $bg-color          $text-color          $indicator
@@ -193,23 +188,25 @@ client.urgent           $urgent-bg-color    $urgent-bg-color   $text-color      
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
 bar {
-        status_command i3status --config ~/.config/i3/i3status.conf
+        i3bar_command $HOME/.config/polybar/launch.sh
         position bottom
-       # status_command $home/.config/polybar/launch.sh
-        #status_command i3blocks -c ~/.config/i3/i3blocks.conf
         colors {
 		background $bar-color
 	    	separator #757575
 		#                  border             background         text
 		focused_workspace  $bg-color          $bg-color          $text-color
-		inactive_workspace $inactive-bg-color $inactive-bg-color $inactive-text-color
+		inactive_workspace $inactive-bg-color $inactive-bg-color $text-bar-color
 		urgent_workspace   $urgent-bg-color   $urgent-bg-color   $text-color
+		separator $separator-color
+		statusline $text-bar-color
                 }
-                tray_output primary
        font pango:System San Francisco Display 10
 }
 
+#dmenu bind
 bindsym $mod+d exec dmenu_run -nb "$text-color" -nf "$bg-color" -sb "$bg-color" -sf "$text-color"
+#firefox bind
+bindsym $mod+f exec firefox
 exec firefox
 #bind the screenlock keys
 bindsym $mod+shift+x exec $home/.config/i3/i3lock-fancy-multimonitor/lock 
@@ -217,12 +214,22 @@ bindsym $mod+shift+x exec $home/.config/i3/i3lock-fancy-multimonitor/lock
 bindsym Control+Print exec spectacle -r
 #bind the move monitor shortcut
 bindsym $mod+z move workspace to output left
-#execute compton
-exec_always compton $home/.config/compton.conf -b
+#execute compton (startup)
+exec compton 
 #remove the titlebar and set the border
-for_window [class="^.*"] border pixel 3
+for_window [class="^.*"] border pixel 2
+#set something that I don't remvember
 exec --no-startup-id xset s off
 exec --no-startup-id xset -dpms
+#exec the network manager applet
 exec --no-startup-id nm-applet
-#exec --no-startup-id redshift
+#exec the kdeconnect && redshift
+exec --no-startup-id kdeconnect-indicator 
+exec --no-startup-id redshift
+#exec the polybar
+exec ~/.config/polybar/launch.sh
+#set the right alt key to do accent 
 exec_always setxkbmap -option compose:ralt
+#i3-gaps
+gaps inner 15
+gaps outer 2

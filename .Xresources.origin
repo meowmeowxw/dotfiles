@@ -1,4 +1,12 @@
-URxvt.font: xft:Hack:size=10
+!URxvt.font:xft:RobotoMono Nerd Font:size=11,\
+!	xft:Inconsolata for Powerline:pixelsize=18
+URxvt.font:xft:Cousine for Powerline:size=13,\
+	xft:RobotoMono Nerd Font:size=10
+!	PowerlineSymbols:size=10,\
+!	xft:ProFont for Powerline:size=10,\
+!	xft:San Francisco Display:size=10,\
+URxvt.letterspace: 2
+URxvt*termName: rxvt-unicode
 ! Colors
 
 !urxvt*background:           #00001a
@@ -48,9 +56,10 @@ URxvt*scrollBar_right: true
 ! scrollbar style
 URxvt*scrollstyle: plain
 URxvt.transparent: true
-URxvt.shading :8
+URxvt.shading : 15
 !URxvt*depth: 32
 !URxvt*background: rgba:0000/0000/0200/c800
 !fade the inactive terminal
 URxvt*fading:15	
-
+urxvt*blurRadius: 8
+*.font:	Liberation Mono:pixelsize=15:antialias=true:autohint=true;

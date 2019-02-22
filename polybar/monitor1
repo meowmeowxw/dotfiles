@@ -27,18 +27,20 @@
 ;secondary = #e60053
 ;alert = #bd2c40
 background = ${xrdb:color0:#222}
+;background = #00000000
 foreground = ${xrdb:color7:#222}
 foreground-alt = ${xrdb:color7:#222}
-primary = ${xrdb:color1:#222}
+primary = ${xrdb:color7:#222}
 secondary = ${xrdb:color2:#222}
 alert = ${xrdb:color3:#222}
+quad = ${xrdb:color12:#222}
 [bar/example]
 monitor = VGA-0
 width = 100%
 height = 22
-;offset-x = 1%
-;offset-y = 1%
-radius = 12.0
+;offset-x = 10%
+;offset-y = 50%
+radius = 0
 fixed-center = false
 
 background = ${colors.background}
@@ -47,28 +49,30 @@ foreground = ${colors.foreground}
 line-size = 2
 line-color = #f00
 
-border-size = 3 
+border-left-size = 0
+border-bottom-size = 0
+border-top-size = 0 
+border-right-size = 0 
 border-color = #00000000
 
 padding-left = 3
 padding-right = 3
-
 module-margin-left = 1
-module-margin-right = 2
+module-margin-right = 1
 
 font-0 = System San Francisco Display:pixelsize=10;1
 font-1 = unifont:fontformat=truetype:size=8:antialias=false;0
 font-2 = siji:pixelsize=10;1
 font-3 = FontAwesome:style=Regular:pizelsize=10
 
-modules-left = bspwm i3
-modules-center = player-cmus pulseaudio 
-modules-right = xbacklight xkeyboard memory cpu eth battery temperature date powermenu
+modules-left = vpn-anyconnect info-ssh-sessions 
+modules-center = player-cmus
+modules-right = xbacklight memory cpu-temperature eth battery temperature
 
-;tray-position = left 
-;tray-padding = 2
-;tray-transparent = true
-;tray-background = #0063ff
+tray-position = left
+tray-padding = 2
+tray-transparent = false
+tray-background = ${colors.background}
 
 ;wm-restack = bspwm
 ;wm-restack = i3
@@ -83,7 +87,6 @@ modules-right = xbacklight xkeyboard memory cpu eth battery temperature date pow
 
 cursor-click = pointer
 cursor-scroll = ns-resize
-
 [module/xwindow]
 type = internal/xwindow
 label = %title:0:30:...%
@@ -148,48 +151,17 @@ ws-icon-0="0 ;"
 ws-icon-1="1 ;"
 ws-icon-2="2 ;"
 ws-icon-3="3 ;"
-ws-icon-4="4 ;"
+ws-icon-4="4 ;"
 ws-icon-5="5 ;"
 ws-icon-6="6 ;"
 ws-icon-7="7 ;"
 ws-icon-8="8 ;"
 ws-icon-9="9 ;"
 
-;ws-icon-default= 
-
-; label-mode = %icon%
-;label-mode-padding = 2
-;label-mode-foreground = ${colors.background}
-;label-mode-background = ${colors.foreground}
-;
-;; focused = Active workspace on focused monitor
-;label-focused = %icon%
-;label-focused-background = ${colors.background}
-;label-focused-underline = ${colors.primary}
-;label-focused-padding = ${module/bspwm.label-focused-padding}
-;
-;; unfocused = Inactive workspace on any monitor
-;label-unfocused = %index%
-;label-unfocused-padding = ${module/bspwm.label-occupied-padding}
-;
-;; visible = Active workspace on unfocused monitor
-;label-visible = %icon% 
-;label-visible-background = ${self.label-focused-background}
-;label-visible-underline = ${colors.secondary}
-;label-visible-padding = ${self.label-focused-padding}
-;
-;; urgent = Workspace with urgency hint set
-;label-urgent = %icon%
-;label-urgent-background = ${module/bspwm.label-urgent-background}
-;label-urgent-padding = ${module/bspwm.label-urgent-padding}
-
-; Separator in between workspaces
-; label-separator = |
-;
 ;cyberpunk
 label-focused = %icon%
 label-focused-foreground = ${colors.background}
-label-focused-background = ${colors.foreground}
+label-focused-background = ${colors.secondary}
 ;label-focused-underline = #${colors.accent}
 label-focused-underline = ${colors.secondary}
 label-focused-font = 4
@@ -257,45 +229,59 @@ card = intel_backlight
 [module/cpu]
 type = internal/cpu
 interval = 1.5
-
 format = <label> <ramp-coreload>
-format-underline = ${colors.secondary}
-label = " "
-label-font = 3
-label-foreground = ${colors.foreground-alt}
-
+format-underline = ${colors.quad}
+label =   %percentage%%
+label-font = 0
+label-foreground = ${colors.quad}
+label-background = ${colors.background}
+label-padding = 2
+ramp-coreload-spacing = 0
 ramp-coreload-0 = ▁
 ramp-coreload-0-font = 2
-ramp-coreload-0-foreground = ${colors.foreground-alt}
+ramp-coreload-0-foreground = ${colors.background}
+ramp-coreload-0-background = ${colors.quad}
 ramp-coreload-1 = ▂
 ramp-coreload-1-font = 2
-ramp-coreload-1-foreground = ${colors.foreground-alt}
+ramp-coreload-1-foreground = ${colors.background}
+ramp-coreload-1-background = ${colors.quad}
 ramp-coreload-2 = ▃
 ramp-coreload-2-font = 2
-ramp-coreload-2-foreground = ${colors.foreground-alt}
+ramp-coreload-2-foreground = ${colors.background}
+ramp-coreload-2-background = ${colors.quad}
 ramp-coreload-3 = ▄
 ramp-coreload-3-font = 2
-ramp-coreload-3-foreground = ${colors.foreground-alt}
+ramp-coreload-3-foreground = ${colors.background}
+ramp-coreload-3-background = ${colors.quad}
 ramp-coreload-4 = ▅
 ramp-coreload-4-font = 2
-ramp-coreload-4-foreground = ${colors.foreground-alt}
+ramp-coreload-4-foreground = ${colors.background}
+ramp-coreload-4-background = ${colors.quad}
 ramp-coreload-5 = ▆
 ramp-coreload-5-font = 2
-ramp-coreload-5-foreground = ${colors.foreground-alt}
+ramp-coreload-5-foreground = ${colors.background}
+ramp-coreload-5-background = ${colors.quad}
 ramp-coreload-6 = ▇
 ramp-coreload-6-font = 2
-ramp-coreload-6-foreground = ${colors.foreground-alt}
+ramp-coreload-6-foreground = ${colors.background}
+ramp-coreload-6-background = ${colors.quad}
 ramp-coreload-7 = █
-ramp-coreload-7-font = 2
-ramp-coreload-7-foreground = ${colors.foreground-alt}
+ramp-coreload-7-font = 0
+ramp-coreload-7-foreground = ${colors.background}
+ramp-coreload-7-background = ${colors.quad}
 
 
 [module/memory]
 type = internal/memory
 interval = 2
-format-prefix = " "
-format-prefix-foreground = ${colors.foreground-alt}
+format-prefix = " "
+format-prefix-foreground = ${colors.secondary}
+format-background = ${colors.background}
+format-foreground = ${colors.secondary}
+format-prefix-background = ${colors.background}
 format-underline = ${colors.secondary}
+label-padding = 1
+format-padding = 1
 label = %percentage_used%%
 
 [module/wlan]
@@ -330,7 +316,7 @@ date-alt = " %Y-%m-%d"
 time = %H:%M
 time-alt = %H:%M:%S
 
-format-prefix = 
+format-prefix = 
 format-prefix-foreground = ${colors.foreground-alt}
 format-underline = ${colors.secondary}
 
@@ -429,18 +415,22 @@ thermal-zone = 0
 warn-temperature = 60
 
 format = <ramp> <label>
-format-underline = ${colors.secondary}
+format-underline = ${colors.primary}
+format-background = ${colors.background}
+format-foreground = ${colors.primary}
+format-padding = 2
 format-warn = <ramp> <label-warn>
 format-warn-underline = ${self.format-underline}
 
 label = %temperature-c%
 label-warn = %temperature-c%
-label-warn-foreground = ${colors.secondary}
+label-warn-foreground = ${colors.primary}
+label-foreground = ${colors.primary}
 
 ramp-0 = 
 ramp-1 = 
 ramp-2 = 
-ramp-foreground = ${colors.foreground-alt}
+ramp-foreground = ${colors.primary}
 
 [module/powermenu]
 type = custom/menu
@@ -448,7 +438,7 @@ type = custom/menu
 expand-right = true
 
 format-spacing = 1
-
+format-padding = 2
 label-open = 
 label-open-foreground = ${colors.secondary}
 label-close =  cancel
@@ -481,10 +471,7 @@ screenchange-reload = true
 [global/wm]
 margin-top = 10
 margin-bottom = 3
-[module/info-ssh-sessions]
-type = custom/script
-exec = ~/.config/polybar/script/info-ssh-sessions.sh
-interval = 5
+
 [module/player-cmus]
 type = custom/script
 exec = ~/.config/polybar/script/player-cmus.sh
@@ -492,8 +479,34 @@ interval = 5
 click-left = cmus-remote -n
 click-right = cmus-remote -r
 click-middle = cmus-remote -u
+format-underline = ${colors.secondary}
+format-background = ${colors.background}
+format-foreground = ${colors.secondary}
+format-padding = 2
 ; vim:ft=dosini
+
 [module/vpn-anyconnect]
 type=custom/script
 exec=~/.config/polybar/script/vpn-anyconnect.sh
 interval=5
+format-underline = ${colors.primary}
+format-background = ${colors.background}
+format-foreground = ${colors.primary}
+format-padding = 2
+
+[module/info-ssh-sessions]
+type = custom/script
+exec = ~/.config/polybar/script/info-ssh-sessions.sh
+interval = 5
+format-underline = ${colors.quad}
+format-background = ${colors.background}
+format-foreground = ${colors.quad}
+format-padding = 2
+
+[module/cpu-temperature]
+type=custom/script
+exec=~/.config/polybar/script/cpu-temperature.sh 
+format-underline = ${colors.quad}
+format-background = ${colors.background}
+format-foreground = ${colors.quad}
+format-padding = 2

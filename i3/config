@@ -77,7 +77,7 @@ bindsym $mod+Shift+f fullscreen toggle
 
 # change container layout (stacked, tabbed, toggle split)
 bindsym $mod+s layout stacking
-bindsym $mod+w layout tabbed
+#bindsym $mod+w layout tabbed
 bindsym $mod+e layout toggle split
 
 # toggle tiling / floating
@@ -94,7 +94,7 @@ bindsym $mod+a focus parent
 set $workspace1 "1 "
 set $workspace2 "2 "
 set $workspace3 "3 "
-set $workspace4 "4 "
+set $workspace4 "4 "
 set $workspace5 "5 "
 set $workspace6 "6 "
 set $workspace7 "7 "
@@ -161,7 +161,10 @@ mode "resize" {
 
 bindsym $mod+r mode "resize"
 #set the wallpaper
-exec_always wal -i ~/pictures/wallpaper/japan4.jpg -b 0a0a0a 
+#exec_always feh --bg-scale ~/pictures/wallpaper/tokyoghoul1.jpg  
+#exec_always wal -i ~/pictures/wallpaper/tokyoghoul1.jpg 
+#exec_always wal -i ~/pictures/wallpaper/red-city.jpg -l -b d3e4e8 -n
+exec_always waller 
 exec_always cp $home/.Xresources.origin $home/.Xresources 
 exec_always cat $home/.cache/wal/colors.Xresources >> $home/.Xresources
 #copy pywal color to the colors of vis (music visualizer)
@@ -214,8 +217,10 @@ bindsym $mod+shift+x exec $home/.config/i3/i3lock-fancy-multimonitor/lock
 bindsym Control+Print exec spectacle -r
 #bind the move monitor shortcut
 bindsym $mod+z move workspace to output left
+bindsym $mod+w exec ~/programs/shell/windows.sh 
+bindsym $mod+m exec ~/.config/polybar/script/launcher.sh 
 #execute compton (startup)
-exec compton 
+exec --no-startup-id compton 
 #remove the titlebar and set the border
 for_window [class="^.*"] border pixel 2
 #set something that I don't remvember
@@ -231,5 +236,5 @@ exec ~/.config/polybar/launch.sh
 #set the right alt key to do accent 
 exec_always setxkbmap -option compose:ralt
 #i3-gaps
-gaps inner 15
-gaps outer 2
+gaps inner 12
+gaps outer 0

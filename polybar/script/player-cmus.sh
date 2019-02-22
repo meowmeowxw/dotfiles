@@ -15,9 +15,9 @@ if info=$(cmus-remote -Q 2> /dev/null); then
 		dur_seconds=$(printf "%02d" $(($duration % 60)))
 
 		if [ "$status" = "playing" ]; then
-			echo "%{u#a6c960}  $artist - $title | $pos_minutes:$pos_seconds / $dur_minutes:$dur_seconds"
+			echo " $artist - $title | $pos_minutes:$pos_seconds / $dur_minutes:$dur_seconds"
 		elif [ "$status" = "paused" ]; then
-			echo "%{u#a6c960}  $artist - $title | $pos_minutes:$pos_seconds / $dur_minutes:$dur_seconds"
+			echo " $artist - $title | $pos_minutes:$pos_seconds / $dur_minutes:$dur_seconds"
 		else
 			echo ""
 		fi

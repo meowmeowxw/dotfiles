@@ -37,10 +37,10 @@ fifth = ${xrdb:color6:#222}
 [bar/example]
 monitor = VGA-0
 width = 100%
-height = 22
+height = 26
 ;offset-x = 1%
 ;offset-y = 1%
-radius = 0
+radius = 10
 fixed-center = false
 
 background = ${colors.background}
@@ -49,32 +49,39 @@ foreground = ${colors.foreground}
 line-size = 2
 line-color = #f00
 
-border-left-size = 0
-border-bottom-size = 0
+border-left-size = 10
+border-bottom-size = 6
 border-top-size = 0
-border-right-size = 0
+border-right-size = 10
 
 border-color = #00000000
 
-padding-left = 2
-padding-right = 2
+padding-left = 3
+padding-right = 3
 
-module-margin-left = 1
-module-margin-right = 1
+module-margin-left = 0
+module-margin-right = 0
 
 font-0 = System San Francisco Display:pixelsize=10;1
-font-1 = unifont:fontformat=truetype:size=8:antialias=false;0
-font-2 = siji:pixelsize=10;1
-font-3 = FontAwesome:style=Regular:pizelsize=10
+font-1 = unifont:fontformat=truetype:size=10:antialias=false;0
+font-2 = Iosevka Nerd Font:style=Medium:size=14;3
+font-3 = Iosevka Nerd Font:style=Medium:size=12;3
 
-modules-left = launcher wlan get-ip
+modules-left = left4 launcher right1 wlan right2 get-ip right3 spacer 
 modules-center = i3
-modules-right = xkeyboard system-uptime-pretty date
+modules-right = left3 xkeyboard left2 system-uptime-pretty left1 date right4
 
 ;tray-position = right 
 ;tray-padding = 2
 ;tray-transparent = false
 ;tray-background = #0a0a0a
+tray-position = right
+tray-padding = 5
+tray-offset-x = -510
+tray-detached = true
+tray-offset-y = 0 
+tray-transparent = false
+tray-background = ${colors.background}
 
 ;wm-restack = bspwm
 ;wm-restack = i3
@@ -94,8 +101,8 @@ bottom=true
 type = custom/script
 exec = ~/.config/polybar/script/uptime.sh
 format-underline = ${colors.quad}
-format-background = ${colors.background}
-format-foreground = ${colors.quad}
+format-background = ${colors.quad}
+format-foreground = ${colors.background}
 format-padding = 2
 interval = 10
 
@@ -104,20 +111,20 @@ type = internal/xkeyboard
 blacklist-0 = num lock
 
 format-prefix = " "
-format-prefix-foreground = ${colors.secondary}
+format-prefix-foreground = ${colors.background}
 format-prefix-underline = ${colors.secondary}
-format-prefix-background = ${colors.background}
+format-prefix-background = ${colors.secondary}
 format-prefix-padding = 2
 label-layout = %layout%
 label-layout-underline = ${colors.secondary}
-label-layout-background = ${colors.background}
-label-layout-foreground = ${colors.secondary}
+label-layout-background = ${colors.secondary}
+label-layout-foreground = ${colors.background}
 label-layout-padding = 2
 label-indicator-padding = 2
 label-indicator-margin = 2
-label-indicator-background = ${colors.background}
+label-indicator-background = ${colors.secondary}
 label-indicator-underline = ${colors.secondary}
-label-indicator-foreground = ${colors.secondary}
+label-indicator-foreground = ${colors.background}
 label-padding = 2
 
 [module/vpn-anyconnect]
@@ -149,11 +156,11 @@ time = %H:%M
 time-alt = %H:%M:%S
 
 format-prefix = 
-format-prefix-foreground = ${colors.primary}
-format-prefix-background = ${colors.background}
-format-background = ${colors.background}
+format-prefix-foreground = ${colors.background}
+format-prefix-background = ${colors.primary}
+format-background = ${colors.primary}
 format-underline = ${colors.primary}
-format-foreground = ${colors.primary}
+format-foreground = ${colors.background}
 format-padding = 2
 label = %date% %time%
 
@@ -164,11 +171,11 @@ interval = 3.0
 
 format-connected = <ramp-signal> <label-connected>
 format-connected-underline = ${colors.quad}
-format-connected-background = ${colors.background}
-format-connected-foreground = ${colors.quad}
+format-connected-background = ${colors.quad}
+format-connected-foreground = ${colors.background}
 format-foreground = ${colors.background}
 label-connected = %essid%
-label-connected-foreground = ${colors.quad}
+label-connected-foreground = ${colors.background}
 label-connected-padding = 2
 format-disconnected =
 ;format-disconnected = <label-disconnected>
@@ -181,7 +188,7 @@ ramp-signal-1 = 
 ramp-signal-2 = 
 ramp-signal-3 = 
 ramp-signal-4 = 
-ramp-signal-foreground = ${colors.quad}
+ramp-signal-foreground = ${colors.background}
 ramp-signal-padding = 3
 
 [module/get-ip]
@@ -189,9 +196,9 @@ type=custom/script
 exec=~/.config/polybar/script/get-ip.sh
 interval=5
 format-underline=${colors.secondary}
-format-background = ${colors.background}
+format-background = ${colors.secondary}
 format-padding = 2
-format-foreground = ${colors.secondary}
+format-foreground = ${colors.background}
 
 [module/i3]
 type = internal/i3
@@ -214,10 +221,10 @@ ws-icon-9="9 ;"
 
 ;cyberpunk
 label-focused = %icon%
-label-focused-foreground = ${colors.secondary}
+label-focused-foreground = ${colors.fifth}
 label-focused-background = ${colors.background}
 ;label-focused-underline = #${colors.accent}
-label-focused-underline = ${colors.secondary}
+label-focused-underline = ${colors.fifth}
 label-focused-font = 4
 label-focused-padding = 4
 
@@ -230,15 +237,15 @@ label-unfocused-padding = 4
 
 label-urgent = %icon%
 label-urgent-foreground = ${colors.foreground}
-label-urgent-background = ${colors.secondary}
+label-urgent-background = ${colors.fifth}
 label-urgent-underline = #9b0a20
 label-urgent-font = 4
 label-urgent-padding = 4
 
 label-visible = %icon%
-label-visible-foreground = ${colors.background}
-label-visible-background = ${colors.foreground}
-label-visible-underline = ${colors.secondary}
+label-visible-foreground = ${colors.fifth}
+label-visible-background = ${colors.background}
+label-visible-underline = ${colors.background}
 label-visible-font = 4
 label-visible-padding = 4
 
@@ -247,8 +254,9 @@ type = custom/text
 content = ""
 
 ; "content" has the same properties as "format-NAME"
-content-background = ${colors.background}
-content-foreground = ${colors.primary}
+content-background = ${colors.primary}
+content-foreground = ${colors.background}
+content-underline = ${colors.primary}
 content-padding = 3
 
 ; "click-(left|middle|right)" will be executed using "/usr/bin/env sh -c $COMMAND"
@@ -257,4 +265,78 @@ click-left = ~/.config/polybar/script/launcher.sh
 
 ; "scroll-(up|down)" will be executed using "/usr/bin/env sh -c $COMMAND"
 ;;scroll-up = ~/.config/polybar/scripts/launcher-full
+
+[module/left-line]
+type = custom/script
+exec = ~/.config/polybar/script/left-line.sh
+interval = 5
+format-underline=${colors.secondary}
+format-background = ${colors.secondary}
+format-padding = 2
+format-foreground = ${colors.fifth}
+
+[module/spacer]
+type = custom/script
+exec = ~/.config/polybar/script/spacer.sh
+interval = 100
+
+
+[module/left1]
+type = custom/script
+exec = ~/.config/polybar/script/left.sh
+format-background = ${colors.quad}
+format-foreground = ${colors.primary}
+interval = 5
+
+
+[module/left2]
+type = custom/script
+exec = ~/.config/polybar/script/left.sh
+format-background = ${colors.secondary}
+format-foreground = ${colors.quad}
+interval = 5
+
+
+[module/left3]
+type = custom/script
+exec = ~/.config/polybar/script/left.sh
+format-background = ${colors.background}
+format-foreground = ${colors.secondary}
+interval = 5
+
+
+[module/left4]
+type = custom/script
+exec = ~/.config/polybar/script/left.sh
+format-background = ${colors.background}
+format-foreground = ${colors.primary}
+interval = 5
+
+[module/right1]
+type = custom/script
+exec = ~/.config/polybar/script/right.sh
+format-background = ${colors.quad}
+format-foreground = ${colors.primary}
+interval = 5
+
+[module/right2]
+type = custom/script
+exec = ~/.config/polybar/script/right.sh
+format-background = ${colors.secondary}
+format-foreground = ${colors.quad}
+interval = 5
+
+[module/right3]
+type = custom/script
+exec = ~/.config/polybar/script/right.sh
+format-background = ${colors.background}
+format-foreground = ${colors.secondary}
+interval = 5
+
+[module/right4]
+type = custom/script
+exec = ~/.config/polybar/script/right.sh
+format-background = ${colors.background}
+format-foreground = ${colors.primary}
+interval = 5
 

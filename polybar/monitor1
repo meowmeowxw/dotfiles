@@ -34,45 +34,42 @@ primary = ${xrdb:color7:#222}
 secondary = ${xrdb:color2:#222}
 alert = ${xrdb:color3:#222}
 quad = ${xrdb:color12:#222}
+fifth = ${xrdb:color6:#222}
 [bar/example]
 monitor = VGA-0
 width = 100%
 height = 22
 ;offset-x = 10%
 ;offset-y = 50%
-radius = 0
+radius = 10
 fixed-center = false
 
 background = ${colors.background}
 foreground = ${colors.foreground}
 
-line-size = 2
+line-size = 0
 line-color = #f00
 
-border-left-size = 0
+border-left-size = 10
 border-bottom-size = 0
-border-top-size = 0 
-border-right-size = 0 
+border-top-size = 8
+border-right-size = 10 
 border-color = #00000000
 
-padding-left = 3
-padding-right = 3
-module-margin-left = 1
-module-margin-right = 1
+padding-left = 4
+padding-right = 4
+module-margin-left = 0
+module-margin-right = 0
 
 font-0 = System San Francisco Display:pixelsize=10;1
 font-1 = unifont:fontformat=truetype:size=8:antialias=false;0
-font-2 = siji:pixelsize=10;1
-font-3 = FontAwesome:style=Regular:pizelsize=10
+font-2 = Iosevka Nerd Font:style=Medium:size=14;3
+font-3 = Iosevka Nerd Font:style=Medium:size=10;3
 
-modules-left = vpn-anyconnect info-ssh-sessions 
-modules-center = player-cmus
-modules-right = xbacklight memory cpu-temperature eth battery temperature
+modules-left = vpn-anyconnect info-ssh-sessions
+modules-center = left2 memory left1 cpu-temperature right1 temperature right2
+modules-right = player-cmus
 
-tray-position = left
-tray-padding = 2
-tray-transparent = false
-tray-background = ${colors.background}
 
 ;wm-restack = bspwm
 ;wm-restack = i3
@@ -275,10 +272,10 @@ ramp-coreload-7-background = ${colors.quad}
 type = internal/memory
 interval = 2
 format-prefix = " "
-format-prefix-foreground = ${colors.secondary}
-format-background = ${colors.background}
-format-foreground = ${colors.secondary}
-format-prefix-background = ${colors.background}
+format-prefix-foreground = ${colors.background}
+format-background = ${colors.secondary}
+format-foreground = ${colors.background}
+format-prefix-background = ${colors.secondary}
 format-underline = ${colors.secondary}
 label-padding = 1
 format-padding = 1
@@ -415,22 +412,22 @@ thermal-zone = 0
 warn-temperature = 60
 
 format = <ramp> <label>
-format-underline = ${colors.primary}
-format-background = ${colors.background}
-format-foreground = ${colors.primary}
+format-underline = ${colors.secondary}
+format-background = ${colors.secondary}
+format-foreground = ${colors.background}
 format-padding = 2
 format-warn = <ramp> <label-warn>
 format-warn-underline = ${self.format-underline}
 
 label = %temperature-c%
 label-warn = %temperature-c%
-label-warn-foreground = ${colors.primary}
-label-foreground = ${colors.primary}
+label-warn-foreground = ${colors.secondary}
+label-foreground = ${colors.background}
 
 ramp-0 = 
 ramp-1 = 
 ramp-2 = 
-ramp-foreground = ${colors.primary}
+ramp-foreground = ${colors.background}
 
 [module/powermenu]
 type = custom/menu
@@ -479,9 +476,9 @@ interval = 5
 click-left = cmus-remote -n
 click-right = cmus-remote -r
 click-middle = cmus-remote -u
-format-underline = ${colors.secondary}
+format-underline = ${colors.quad}
 format-background = ${colors.background}
-format-foreground = ${colors.secondary}
+format-foreground = ${colors.quad}
 format-padding = 2
 ; vim:ft=dosini
 
@@ -492,7 +489,7 @@ interval=5
 format-underline = ${colors.primary}
 format-background = ${colors.background}
 format-foreground = ${colors.primary}
-format-padding = 2
+format-padding-left = 20
 
 [module/info-ssh-sessions]
 type = custom/script
@@ -506,7 +503,38 @@ format-padding = 2
 [module/cpu-temperature]
 type=custom/script
 exec=~/.config/polybar/script/cpu-temperature.sh 
-format-underline = ${colors.quad}
-format-background = ${colors.background}
-format-foreground = ${colors.quad}
+format-underline = ${colors.fifth}
+format-background = ${colors.fifth}
+format-foreground = ${colors.background}
 format-padding = 2
+
+[module/left1]
+type = custom/script
+exec = ~/.config/polybar/script/left.sh
+format-background = ${colors.secondary}
+format-foreground = ${colors.fifth}
+interval = 5
+
+
+[module/left2]
+type = custom/script
+exec = ~/.config/polybar/script/left.sh
+format-background = ${colors.background}
+format-foreground = ${colors.secondary}
+interval = 5
+
+[module/right1]
+type = custom/script
+exec = ~/.config/polybar/script/right.sh
+format-background = ${colors.secondary}
+format-foreground = ${colors.fifth}
+interval = 5
+
+[module/right2]
+type = custom/script
+exec = ~/.config/polybar/script/right.sh
+format-background = ${colors.background}
+format-foreground = ${colors.secondary}
+interval = 5
+
+

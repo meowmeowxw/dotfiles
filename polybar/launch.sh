@@ -7,9 +7,7 @@ killall -q polybar
 while pgrep -u $UID -x polybar >/dev/null; do sleep 1; done
 
 # Launch example bar
-polybar --config=/home/giovanni/.config/polybar/monitor1 example &
-polybar --config=/home/giovanni/.config/polybar/monitor2 example &
-polybar --config=/home/giovanni/.config/polybar/tray-monitor1 example &
-polybar --config=/home/giovanni/.config/polybar/tray-monitor2 example &
+polybar --config=/home/giovanni/.config/polybar/monitor1.conf example &
+polybar --config=/home/giovanni/.config/polybar/monitor2.conf example &
 
 echo "Top bar launched!"

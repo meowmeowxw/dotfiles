@@ -1,0 +1,342 @@
+;==========================================================
+;
+;
+;   ██████╗  ██████╗ ██╗  ██╗   ██╗██████╗  █████╗ ██████╗
+;   ██╔══██╗██╔═══██╗██║  ╚██╗ ██╔╝██╔══██╗██╔══██╗██╔══██╗
+;   ██████╔╝██║   ██║██║   ╚████╔╝ ██████╔╝███████║██████╔╝
+;   ██╔═══╝ ██║   ██║██║    ╚██╔╝  ██╔══██╗██╔══██║██╔══██╗
+;   ██║     ╚██████╔╝███████╗██║   ██████╔╝██║  ██║██║  ██║
+;   ╚═╝      ╚═════╝ ╚══════╝╚═╝   ╚═════╝ ╚═╝  ╚═╝╚═╝  ╚═╝
+;
+;
+;   To learn more about how to configure Polybar
+;   go to https://github.com/jaagr/polybar
+;
+;   The README contains alot of information
+;
+;==========================================================
+
+[colors]
+;background = ${xrdb:color0:#222}
+;background = #f4f2f2
+;background-alt = #444
+;foreground = ${xrdb:color7:#222}
+;foreground = #161313
+;foreground-alt = #555
+;primary = #ffb52a
+;secondary = #e60053
+;alert = #bd2c40
+background = ${xrdb:color0:#222}
+foreground = ${xrdb:color7:#222}
+foreground-alt = ${xrdb:color7:#222}
+primary = ${xrdb:color7:#222}
+secondary = ${xrdb:color2:#222}
+alert = ${xrdb:color3:#222}
+quad = ${xrdb:color12:#222}
+fifth = ${xrdb:color6:#222}
+[bar/example]
+monitor = VGA-0
+width = 100%
+height = 26
+;offset-x = 1%
+;offset-y = 1%
+radius = 10
+fixed-center = false
+
+background = ${colors.background}
+foreground = ${colors.foreground}
+
+line-size = 2
+line-color = #f00
+
+border-left-size = 10
+border-bottom-size = 6
+border-top-size = 0
+border-right-size = 10
+
+border-color = #00000000
+
+padding-left = 3
+padding-right = 3
+
+module-margin-left = 0
+module-margin-right = 0
+
+font-0 = System San Francisco Display:pixelsize=10;1
+font-1 = unifont:fontformat=truetype:size=10:antialias=false;0
+font-2 = Iosevka Nerd Font:style=Medium:size=14;3
+font-3 = Iosevka Nerd Font:style=Medium:size=12;3
+
+modules-left = left4 launcher right1 wlan right2 get-ip right3 spacer 
+modules-center = i3
+modules-right = left3 xkeyboard left2 system-uptime-pretty left1 date right4
+
+;tray-position = right 
+;tray-padding = 2
+;tray-transparent = false
+;tray-background = #0a0a0a
+tray-position = right
+tray-padding = 5
+tray-offset-x = -510
+tray-detached = true
+tray-offset-y = 0 
+tray-transparent = false
+tray-background = ${colors.background}
+
+;wm-restack = bspwm
+;wm-restack = i3
+
+;override-redirect = true
+
+;scroll-up = bspwm-desknext
+;scroll-down = bspwm-deskprev
+
+;scroll-up = i3wm-wsnext
+;scroll-down = i3wm-wsprev
+
+cursor-click = pointer
+cursor-scroll = ns-resize
+bottom=true
+[module/system-uptime-pretty]
+type = custom/script
+exec = ~/.config/polybar/script/uptime.sh
+format-underline = ${colors.quad}
+format-background = ${colors.quad}
+format-foreground = ${colors.background}
+format-padding = 2
+interval = 10
+
+[module/xkeyboard]
+type = internal/xkeyboard
+blacklist-0 = num lock
+
+format-prefix = " "
+format-prefix-foreground = ${colors.background}
+format-prefix-underline = ${colors.secondary}
+format-prefix-background = ${colors.secondary}
+format-prefix-padding = 2
+label-layout = %layout%
+label-layout-underline = ${colors.secondary}
+label-layout-background = ${colors.secondary}
+label-layout-foreground = ${colors.background}
+label-layout-padding = 2
+label-indicator-padding = 2
+label-indicator-margin = 2
+label-indicator-background = ${colors.secondary}
+label-indicator-underline = ${colors.secondary}
+label-indicator-foreground = ${colors.background}
+label-padding = 2
+
+[module/vpn-anyconnect]
+type=custom/script
+exec=~/.config/polybar/script/vpn-anyconnect.sh
+interval=5
+format-underline = ${colors.secondary}
+format-background = ${colors.fifth}
+format-foreground = ${colors.background}
+format-padding = 2
+
+[module/info-ssh-sessions]
+type = custom/script
+exec = ~/.config/polybar/script/info-ssh-sessions.sh
+interval = 5
+format-underline = ${colors.secondary}
+format-background = ${colors.secondary}
+format-foreground = ${colors.background}
+format-padding = 2
+
+[module/date]
+type = internal/date
+interval = 5
+
+date = " %Y-%m-%d"
+date-alt = " %Y-%m-%d"
+
+time = %H:%M
+time-alt = %H:%M:%S
+
+format-prefix = 
+format-prefix-foreground = ${colors.background}
+format-prefix-background = ${colors.primary}
+format-background = ${colors.primary}
+format-underline = ${colors.primary}
+format-foreground = ${colors.background}
+format-padding = 2
+label = %date% %time%
+
+[module/wlan]
+type = internal/network
+interface = wlxa0f3c11bc5ad
+interval = 3.0
+
+format-connected = <ramp-signal> <label-connected>
+format-connected-underline = ${colors.quad}
+format-connected-background = ${colors.quad}
+format-connected-foreground = ${colors.background}
+format-foreground = ${colors.background}
+label-connected = %essid%
+label-connected-foreground = ${colors.background}
+label-connected-padding = 2
+format-disconnected =
+;format-disconnected = <label-disconnected>
+;format-disconnected-underline = ${self.format-connected-underline}
+;label-disconnected = %ifname% disconnected
+;label-disconnected-foreground = ${colors.foreground-alt}
+
+ramp-signal-0 = 
+ramp-signal-1 = 
+ramp-signal-2 = 
+ramp-signal-3 = 
+ramp-signal-4 = 
+ramp-signal-foreground = ${colors.background}
+ramp-signal-padding = 3
+
+[module/get-ip]
+type=custom/script
+exec=~/.config/polybar/script/get-ip.sh
+interval=5
+format-underline=${colors.secondary}
+format-background = ${colors.secondary}
+format-padding = 2
+format-foreground = ${colors.background}
+
+[module/i3]
+type = internal/i3
+format = <label-state> <label-mode>
+index-sort = true
+wrapping-scroll = false
+pin-workspaces = true
+; Only show workspaces on the same output as the bar
+;pin-workspaces = true
+ws-icon-0="0 ;"
+ws-icon-1="1 ;"
+ws-icon-2="2 ;"
+ws-icon-3="3 ;"
+ws-icon-4="4 ;"
+ws-icon-5="5 ;"
+ws-icon-6="6 ;"
+ws-icon-7="7 ;"
+ws-icon-8="8 ;"
+ws-icon-9="9 ;"
+
+;cyberpunk
+label-focused = %icon%
+label-focused-foreground = ${colors.fifth}
+label-focused-background = ${colors.background}
+;label-focused-underline = #${colors.accent}
+label-focused-underline = ${colors.fifth}
+label-focused-font = 4
+label-focused-padding = 4
+
+label-unfocused = %icon%
+label-unfocused-background = ${colors.background}
+label-unfocused-foreground = ${colors.foreground}
+;label-unfocused-underline = #555555
+label-unfocused-font = 4
+label-unfocused-padding = 4
+
+label-urgent = %icon%
+label-urgent-foreground = ${colors.foreground}
+label-urgent-background = ${colors.fifth}
+label-urgent-underline = #9b0a20
+label-urgent-font = 4
+label-urgent-padding = 4
+
+label-visible = %icon%
+label-visible-foreground = ${colors.fifth}
+label-visible-background = ${colors.background}
+label-visible-underline = ${colors.background}
+label-visible-font = 4
+label-visible-padding = 4
+
+[module/launcher]
+type = custom/text
+content = ""
+
+; "content" has the same properties as "format-NAME"
+content-background = ${colors.primary}
+content-foreground = ${colors.background}
+content-underline = ${colors.primary}
+content-padding = 3
+
+; "click-(left|middle|right)" will be executed using "/usr/bin/env sh -c $COMMAND"
+click-left = ~/.config/polybar/script/launcher.sh
+;;click-middle = ~/.config/polybar/scripts/launcher-full
+
+; "scroll-(up|down)" will be executed using "/usr/bin/env sh -c $COMMAND"
+;;scroll-up = ~/.config/polybar/scripts/launcher-full
+
+[module/left-line]
+type = custom/script
+exec = ~/.config/polybar/script/left-line.sh
+interval = 5
+format-underline=${colors.secondary}
+format-background = ${colors.secondary}
+format-padding = 2
+format-foreground = ${colors.fifth}
+
+[module/spacer]
+type = custom/script
+exec = ~/.config/polybar/script/spacer.sh
+interval = 100
+
+
+[module/left1]
+type = custom/script
+exec = ~/.config/polybar/script/left.sh
+format-background = ${colors.quad}
+format-foreground = ${colors.primary}
+interval = 5
+
+
+[module/left2]
+type = custom/script
+exec = ~/.config/polybar/script/left.sh
+format-background = ${colors.secondary}
+format-foreground = ${colors.quad}
+interval = 5
+
+
+[module/left3]
+type = custom/script
+exec = ~/.config/polybar/script/left.sh
+format-background = ${colors.background}
+format-foreground = ${colors.secondary}
+interval = 5
+
+
+[module/left4]
+type = custom/script
+exec = ~/.config/polybar/script/left.sh
+format-background = ${colors.background}
+format-foreground = ${colors.primary}
+interval = 5
+
+[module/right1]
+type = custom/script
+exec = ~/.config/polybar/script/right.sh
+format-background = ${colors.quad}
+format-foreground = ${colors.primary}
+interval = 5
+
+[module/right2]
+type = custom/script
+exec = ~/.config/polybar/script/right.sh
+format-background = ${colors.secondary}
+format-foreground = ${colors.quad}
+interval = 5
+
+[module/right3]
+type = custom/script
+exec = ~/.config/polybar/script/right.sh
+format-background = ${colors.background}
+format-foreground = ${colors.secondary}
+interval = 5
+
+[module/right4]
+type = custom/script
+exec = ~/.config/polybar/script/right.sh
+format-background = ${colors.background}
+format-foreground = ${colors.primary}
+interval = 5
+

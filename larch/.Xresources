@@ -1,0 +1,3 @@
+rofi.font: RobotoMono Nerd Font 14
+*.font:	RobotoMono Nerd Font:pixelsize=15:antialias=true:autohint=true;
+*.alpha: 255

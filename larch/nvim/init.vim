@@ -4,6 +4,8 @@ Plug 'davidhalter/jedi-vim'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'sakhnik/nvim-gdb', { 'do': ':!./install.sh \| UpdateRemotePlugins' }
+Plug 'numirias/semshi', {'do': ':UpdateRemotePlugins'}
+Plug 'neoclide/coc.nvim', {'do': './install.sh'}
 
 call plug#end()
 
@@ -19,12 +21,17 @@ set softtabstop=4
 set shiftwidth=4
 set noexpandtab
 set number
+set splitbelow
+set splitright
 map <F6> :tabp<CR>
 map <F7> :tabn<CR>
 map <C-K> :5winc +<CR>
 map <C-J> :5winc -<CR>
 map <C-H> :5winc <<CR>
 map <C-L> :5winc ><CR>
+map <C-T> :split term://zsh<CR>
+au BufEnter * if &buftype == 'terminal' | :startinsert | endif
+tnoremap <Esc> <C-\><C-n>
 augroup project
 	autocmd!
     autocmd BufRead,BufNewFile *.h,*.c set filetype=c.doxygen
@@ -33,3 +40,4 @@ function! YRRunAfterMaps()
 	nnoremap Y	:<C-U>YRYankCount 'y$'<CR>
 endfunction
 nnoremap Y y$
+

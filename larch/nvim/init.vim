@@ -1,29 +1,44 @@
 call plug#begin('~/.local/share/nvim/plugged')
 
-Plug 'davidhalter/jedi-vim'
-"Plug 'vim-airline/vim-airline'
-"Plug 'vim-airline/vim-airline-themes'
 Plug 'sakhnik/nvim-gdb', { 'do': ':!./install.sh \| UpdateRemotePlugins' }
 Plug 'numirias/semshi', {'do': ':UpdateRemotePlugins'}
 Plug 'neoclide/coc.nvim', {'do': './install.sh'}
 Plug 'itchyny/lightline.vim'
+Plug 'tpope/vim-fugitive'
 
 call plug#end()
 
 let g:lightline = {
 		\ 'colorscheme': 'one',
 		\ 'active': {
-		\	'right': [ [ 'lineinfo' ],
-		\				[ 'percent' ],
-		\				[ 'info', 'fileformat', 'fileencoding', 'filetype' ] ]
+		\	'right': [ [ 'length' ],
+		\				[ 'percent', 'lineinfo' ],
+		\				[ 'info', 'fileformat', 'fileencoding', 'filetype' ] ],
+		\	'left': [ [ 'mode', 'paste' ],
+		\			  [ 'gitbranch', 'readonly', 'filename', 'modified' ] ]
 		\ },
 		\ 'component_function' : {
 		\	'filetype': 'LightlineFiletype',
+		\	'gitbranch': 'LightlineGitbranch'
 		\ },
-	    \ 'component': { 
-		\	'info' : ' arch  ' 
+       	\ 'component': {
+		\	'readonly': '%{&readonly?" ":""}',
+		\	'info' : ' arch  ',
+		\	'fileformat' : '%{&fileformat}  ',
+		\	'length' : '%{&lines}  ',
+		\	'fileencoding' : '%{&fileencoding}  '
 		\ },
+	    \ 'separator': { 'left': '', 'right': '' },
+        \ 'subseparator': { 'left': '', 'right': '' },
 		\ }
+
+function! LightlineGitbranch()
+  if &ft !~? 'vimfiler\|gundo' && exists("*fugitive#head")
+		let _ = fugitive#head()
+		return strlen(_) ? ' '._ : ''
+	endif
+	return ''
+endfunction
 
 function! LightlineFiletype()
   return &filetype ==# 'python' ? 'python  ' : 
@@ -34,6 +49,7 @@ function! LightlineFiletype()
 		\ &filetype ==# 'html' ? 'html  ' : 
 		\ &filetype ==# 'javascript' ? 'javascript  ' : 
 		\ &filetype ==# 'php' ? 'php  ' : 
+		\ &filetype ==# 'vim' ? 'vim  ' : 
 		\ &filetype
 endfunction
 "let g:airline_section_y = 'utf-8 arch  ' 

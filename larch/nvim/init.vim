@@ -33,11 +33,18 @@ let g:lightline = {
 		\ }
 
 function! LightlineGitbranch()
-  if &ft !~? 'vimfiler\|gundo' && exists("*fugitive#head")
-		let _ = fugitive#head()
-		return strlen(_) ? ' '._ : ''
-	endif
-	return ''
+	let branchy = system('git branch | head -n 1 | tr -d ''\n'' ')
+	if branchy ==# '* master'
+		return ' master  '
+	else
+		return 'no git motherfucker  '
+"	if branchy ==# '* master' ? 'mastery' : return ''
+"  if &ft !~? 'vimfiler\|gundo' && exists("*fugitive#head")
+"		let _ = fugitive#head()
+"		return strlen(_) ? ' '._.'  ' :
+"			\ 'no  motherfucker  '
+"	endif
+"	return ''
 endfunction
 
 function! LightlineFiletype()
@@ -48,14 +55,17 @@ function! LightlineFiletype()
 		\ &filetype ==# 'go' ? 'go  ' : 
 		\ &filetype ==# 'html' ? 'html  ' : 
 		\ &filetype ==# 'javascript' ? 'javascript  ' : 
+		\ &filetype ==# 'markdown' ? 'markdown  ' : 
 		\ &filetype ==# 'php' ? 'php  ' : 
 		\ &filetype ==# 'vim' ? 'vim  ' : 
+		\ &filetype ==# 'rust' ? 'rust  ' : 
+		\ &filetype ==# 'rust' ? 'rust  ' : 
+		\ &filetype ==# 'haskell' ? 'haskell  ' : 
+		\ &filetype ==# 'cs' ? 'csharp  ' : 
+		\ &filetype ==# 'text' ? 'text  ' : 
 		\ &filetype
 endfunction
-"let g:airline_section_y = 'utf-8 arch  ' 
-"let g:airline_theme = 'deus'
-"let g:airline#extensions#tabline#enabled = 1
-"let g:airline_powerline_fonts = 1
+
 set termguicolors
 colorscheme material-theme
 let g:terminal_color_1 = '#282828'
@@ -75,6 +85,7 @@ set noexpandtab
 set number
 set splitbelow
 set splitright
+set noshowmode
 map <F6> :tabp<CR>
 map <F7> :tabn<CR>
 map <C-K> :5winc +<CR>

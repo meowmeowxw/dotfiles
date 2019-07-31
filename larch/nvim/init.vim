@@ -5,6 +5,7 @@ Plug 'numirias/semshi', {'do': ':UpdateRemotePlugins'}
 Plug 'neoclide/coc.nvim', {'do': './install.sh'}
 Plug 'itchyny/lightline.vim'
 Plug 'tpope/vim-fugitive'
+Plug 'mhinz/vim-startify'
 
 call plug#end()
 
@@ -33,18 +34,12 @@ let g:lightline = {
 		\ }
 
 function! LightlineGitbranch()
-	let branchy = system('git branch | head -n 1 | tr -d ''\n'' ')
-	if branchy ==# '* master'
-		return ' master  '
-	else
-		return 'no git motherfucker  '
-"	if branchy ==# '* master' ? 'mastery' : return ''
-"  if &ft !~? 'vimfiler\|gundo' && exists("*fugitive#head")
-"		let _ = fugitive#head()
-"		return strlen(_) ? ' '._.'  ' :
-"			\ 'no  motherfucker  '
-"	endif
-"	return ''
+  if &ft !~? 'vimfiler\|gundo' && exists("*fugitive#head")
+		let _ = fugitive#head()
+			return strlen(_) ? ' '._.'  ' :
+			\ 'no  motherfucker  '
+	endif
+	return ''
 endfunction
 
 function! LightlineFiletype()

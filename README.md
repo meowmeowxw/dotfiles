@@ -8,4 +8,3 @@ Linux mint i3 config
 
 Arch linux i3 config 
 
-$ \alpha $

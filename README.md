@@ -1,10 +1,12 @@
 # Dotfiles Configuration
 
-## [Lmint](./lmint)
+## [Larch](./larch)
+
+Arch linux i3/kde config  
+
+## [Lmint Old](./lmint)
 
 Linux mint i3 config
 
-## [Larch](./larch)
 
-Arch linux i3 config 
 

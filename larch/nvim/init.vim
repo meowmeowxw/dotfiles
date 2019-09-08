@@ -6,11 +6,14 @@ Plug 'neoclide/coc.nvim', {'do': './install.sh'}
 Plug 'itchyny/lightline.vim'
 Plug 'tpope/vim-fugitive'
 Plug 'mhinz/vim-startify'
+Plug 'ryanoasis/vim-devicons'
+Plug 'scrooloose/nerdtree'
+Plug 'drewtempelmeyer/palenight.vim'
 
 call plug#end()
 
 let g:lightline = {
-		\ 'colorscheme': 'one',
+		\ 'colorscheme': 'palenight',
 		\ 'active': {
 		\	'right': [ [ 'length' ],
 		\				[ 'percent', 'lineinfo' ],
@@ -54,15 +57,15 @@ function! LightlineFiletype()
 		\ &filetype ==# 'php' ? 'php  ' : 
 		\ &filetype ==# 'vim' ? 'vim  ' : 
 		\ &filetype ==# 'rust' ? 'rust  ' : 
-		\ &filetype ==# 'rust' ? 'rust  ' : 
 		\ &filetype ==# 'haskell' ? 'haskell  ' : 
 		\ &filetype ==# 'cs' ? 'csharp  ' : 
 		\ &filetype ==# 'text' ? 'text  ' : 
 		\ &filetype
 endfunction
 
-set termguicolors
-colorscheme material-theme
+set termguicolors 
+set background=dark
+colorscheme palenight
 let g:terminal_color_1 = '#282828'
 let g:terminal_color_2 = '#e14245'
 let g:terminal_color_3 = '#55ba79'
@@ -88,6 +91,8 @@ map <C-J> :5winc -<CR>
 map <C-H> :5winc <<CR>
 map <C-L> :5winc ><CR>
 map <C-T> :split term://zsh<CR>
+map <C-N> :NERDTreeToggle<CR>
+nnoremap <Leader>c :set cursorline!<CR>
 au BufEnter * if &buftype == 'terminal' | :startinsert | endif
 tnoremap <Esc> <C-\><C-n>
 augroup project
@@ -98,4 +103,10 @@ function! YRRunAfterMaps()
 	nnoremap Y	:<C-U>YRYankCount 'y$'<CR>
 endfunction
 nnoremap Y y$
-
+autocmd StdinReadPre * let s:std_in=1
+autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in") | exe 'NERDTree' argv()[0] | wincmd p | ene | exe 'cd '.argv()[0] | endif
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+if (has("nvim"))
+  "For Neovim 0.1.3 and 0.1.4 < https://github.com/neovim/neovim/pull/2198 >
+  let $NVIM_TUI_ENABLE_TRUE_COLOR=1
+endif

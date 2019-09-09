@@ -8,5 +8,3 @@ Arch linux i3/kde config
 
 Linux mint i3 config
 
-
-

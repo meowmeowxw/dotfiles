@@ -6,5 +6,4 @@ then
 else
 	var=${var::-3}
 	echo " $var"
-
 fi

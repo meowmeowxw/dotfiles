@@ -1,79 +1,28 @@
 call plug#begin('~/.local/share/nvim/plugged')
 
-Plug 'sakhnik/nvim-gdb', { 'do': ':!./install.sh \| UpdateRemotePlugins' }
-Plug 'numirias/semshi', {'do': ':UpdateRemotePlugins'}
 Plug 'neoclide/coc.nvim', {'do': './install.sh'}
-Plug 'itchyny/lightline.vim'
-Plug 'tpope/vim-fugitive'
 Plug 'mhinz/vim-startify'
 Plug 'ryanoasis/vim-devicons'
 Plug 'scrooloose/nerdtree'
+	map <C-N> :NERDTreeToggle<CR>
+	autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && 
+	\ !exists("s:std_in") | exe 'NERDTree' argv()[0] | wincmd p | ene | 
+	\ exe 'cd '.argv()[0] | endif
+	autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && 
+	\ b:NERDTree.isTabTree()) | q | endif
 Plug 'drewtempelmeyer/palenight.vim'
+Plug 'numirias/semshi', {'do': ':UpdateRemotePlugins'}
+Plug 'KeitaNakamura/tex-conceal.vim'
+    set conceallevel=1
+Plug 'liuchengxu/eleline.vim'
+Plug 'tpope/vim-fugitive'
 
 call plug#end()
 
-let g:lightline = {
-		\ 'colorscheme': 'palenight',
-		\ 'active': {
-		\	'right': [ [ 'length' ],
-		\				[ 'percent', 'lineinfo' ],
-		\				[ 'info', 'fileformat', 'fileencoding', 'filetype' ] ],
-		\	'left': [ [ 'mode', 'paste' ],
-		\			  [ 'gitbranch', 'readonly', 'filename', 'modified' ] ]
-		\ },
-		\ 'component_function' : {
-		\	'filetype': 'LightlineFiletype',
-		\	'gitbranch': 'LightlineGitbranch'
-		\ },
-       	\ 'component': {
-		\	'readonly': '%{&readonly?" ":""}',
-		\	'info' : ' arch  ',
-		\	'fileformat' : '%{&fileformat}  ',
-		\	'length' : '%{&lines}  ',
-		\	'fileencoding' : '%{&fileencoding}  '
-		\ },
-	    \ 'separator': { 'left': '', 'right': '' },
-        \ 'subseparator': { 'left': '', 'right': '' },
-		\ }
-
-function! LightlineGitbranch()
-  if &ft !~? 'vimfiler\|gundo' && exists("*fugitive#head")
-		let _ = fugitive#head()
-			return strlen(_) ? ' '._.'  ' :
-			\ 'no  motherfucker  '
-	endif
-	return ''
-endfunction
-
-function! LightlineFiletype()
-  return &filetype ==# 'python' ? 'python  ' : 
-		\ &filetype ==# 'c.doxygen' ? 'C  ' : 
-		\ &filetype ==# 'c' ? 'c  ' : 
-		\ &filetype ==# 'cpp' ? 'cpp  ' : 
-		\ &filetype ==# 'go' ? 'go  ' : 
-		\ &filetype ==# 'html' ? 'html  ' : 
-		\ &filetype ==# 'javascript' ? 'javascript  ' : 
-		\ &filetype ==# 'markdown' ? 'markdown  ' : 
-		\ &filetype ==# 'php' ? 'php  ' : 
-		\ &filetype ==# 'vim' ? 'vim  ' : 
-		\ &filetype ==# 'rust' ? 'rust  ' : 
-		\ &filetype ==# 'haskell' ? 'haskell  ' : 
-		\ &filetype ==# 'cs' ? 'csharp  ' : 
-		\ &filetype ==# 'text' ? 'text  ' : 
-		\ &filetype
-endfunction
-
-set termguicolors 
-set background=dark
-colorscheme palenight
-let g:terminal_color_1 = '#282828'
-let g:terminal_color_2 = '#e14245'
-let g:terminal_color_3 = '#55ba79'
-let g:terminal_color_4 = '#f67400'
-let g:terminal_color_5 = '#4285f4'
-let g:terminal_color_6 = '#9b59b6'
-let g:terminal_color_7 = '#1abc9c'
-
+" Nvim behaviour
+set background=light
+colorscheme gruvbox
+set termguicolors
 set hls!
 set laststatus=2
 set tabstop=4
@@ -84,29 +33,59 @@ set number
 set splitbelow
 set splitright
 set noshowmode
+set cursorline
+set colorcolumn=80
+"
+" Custom Shortcuts
 map <F6> :tabp<CR>
 map <F7> :tabn<CR>
 map <C-K> :5winc +<CR>
 map <C-J> :5winc -<CR>
-map <C-H> :5winc <<CR>
-map <C-L> :5winc ><CR>
-map <C-T> :split term://zsh<CR>
-map <C-N> :NERDTreeToggle<CR>
+map <C-H> :5winc ><CR>
+map <C-L> :5winc <<CR>
+map <C-T> :vsplit term://zsh<CR>
+map D d$
+map Y y$
 nnoremap <Leader>c :set cursorline!<CR>
-au BufEnter * if &buftype == 'terminal' | :startinsert | endif
+nnoremap <Leader>r :g/^\s*$/d<CR>
 tnoremap <Esc> <C-\><C-n>
+
+" Tricks
+au BufEnter * if &buftype == 'terminal' | :startinsert | endif
+autocmd StdinReadPre * let s:std_in=1
 augroup project
 	autocmd!
     autocmd BufRead,BufNewFile *.h,*.c set filetype=c.doxygen
 augroup END
+
+function SemshiLight()
+	hi semshiImported guifg=#e06411
+	hi semshiSelf guifg=#33990a
+	hi semshiAttribute guifg=#770a99
+	hi semshiParameter guifg=#1b4eba
+	hi semshiParameterUnused guifg=#a82678
+	hi semshiGlobal guifg=#d8671c
+	hi semshiBuiltin guifg=#d31fd3
+	hi semshiFree guifg=#c44082
+	hi semshiSelected guifg=#3d3d38 guibg=#f2f076
+endfunction
+
+function SemshiDark()
+	hi semshiAttribute guifg=#40f972
+endfunction
+
 function! YRRunAfterMaps()
 	nnoremap Y	:<C-U>YRYankCount 'y$'<CR>
 endfunction
 nnoremap Y y$
-autocmd StdinReadPre * let s:std_in=1
-autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in") | exe 'NERDTree' argv()[0] | wincmd p | ene | exe 'cd '.argv()[0] | endif
-autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
-if (has("nvim"))
-  "For Neovim 0.1.3 and 0.1.4 < https://github.com/neovim/neovim/pull/2198 >
-  let $NVIM_TUI_ENABLE_TRUE_COLOR=1
+
+if &background ==# 'light'
+	autocmd FileType python call SemshiLight()
+elseif &background ==# 'dark'
+	autocmd FileType python call SemshiDark()
 endif
+autocmd BufNewFile *.c r $HOME/.config/nvim/templates/t.c
+autocmd BufNewFile *.py r $HOME/.config/nvim/templates/t.py
+autocmd BufNewFile *.sh r $HOME/.config/nvim/templates/t.sh
+let g:airline_powerline_fonts = 1
+

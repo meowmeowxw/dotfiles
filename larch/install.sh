@@ -7,7 +7,7 @@ END="[*] done"
 redshift()
 {
 	echo ${START} "redshift"
-	cp redshift.config ${CONFIG_DIR}/redshift.conf
+	cp redshift.conf ${CONFIG_DIR}/redshift.conf
 	echo ${END} "redshift"
 }
 

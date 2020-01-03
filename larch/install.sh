@@ -46,3 +46,4 @@ main()
 #	gdb()
 }
 
+main

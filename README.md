@@ -14,5 +14,5 @@
 
 ### Wallpaper
 
-[Iris](https://store.kde.org/p/1314841/)
+[Plants](https://i.imgur.com/tWriKNs.jpg)
 

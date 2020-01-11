@@ -43,7 +43,7 @@ main()
 	redshift
 	nvim
 	rofi
-#	gdb()
 }
 
 main
+

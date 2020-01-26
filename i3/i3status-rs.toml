@@ -4,10 +4,28 @@ name = "slick"
 [theme.overrides]
 separator = ""
 idle_bg = "#282828"
-info_bg = "#282828"
+idle_fg = "#ffffff"
+info_bg = "#1b9310"
+info_fg = "#ffffff"
+good_bg = "#0c7014"
+good_fg = "#ffffff"
+warning_bg = "#db6634"
+warning_fg = "#ffffff"
+critical_bg = "#b2221a"
+critical_fg = "#ffffff"
+alternating_tint_fg = "#240510"
 
 [icons]
 name = "awesome"
+
+[[block]]
+block = "music"
+buttons = ["prev", "play", "next"]
+
+[[block]]
+block = "battery"
+interval = 10
+format = "{percentage}% {time}"
 
 [[block]]
 block = "disk_space"
@@ -41,3 +59,4 @@ block = "sound"
 block = "time"
 interval = 60
 format = "%a %d/%m %R"
+

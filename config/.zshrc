@@ -2,28 +2,25 @@
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
-  export ZSH="/home/meowmeow/.oh-my-zsh"
-
+export PATH=$PATH:$HOME/.local/bin/
+export ZSH="/home/meowmeow/.oh-my-zsh"
+export BAT_THEME="zenburn"
+export MANPAGER="sh -c 'col -bx | bat -l man -p'"
+export EDITOR="nvim"
+export WORKON_HOME=$HOME/.virtualenvs
+export PROJECT_HOME=$HOME/Tools/
+source /usr/bin/virtualenvwrapper.sh
+eval "$(starship init zsh)"
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
-ZSH_THEME="gnzh"
-#SPACESHIP_CHAR_SYMBOL="  " 
-#ZSH_THEME="powerlevel10k/powerlevel10k"
-#POWERLEVEL9K_PROMPT_ON_NEWLINE=true
-#POWERLEVEL9K_MULTILINE_FIRST_PROMPT_PREFIX="╭─ "
-#POWERLEVEL9K_MULTILINE_LAST_PROMPT_PREFIX="╰─  "
-#POWERLEVEL9K_RPROMPT_ON_NEWLINE=true
-#POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status)
-#POWERLEVEL9K_NETWORK_ICON='\ufaa8'
-#POWERLEVEL9K_LOAD_ICON='\uf437 '
-#POWERLEVEL9K_HOME_ICON='\uf07b '
-#POWERLEVEL9K_HOME_SUB_ICON='\uf121 '
-#POWERLEVEL9K_FOLDER_ICON='\uf30f '
-#POWERLEVEL9K_ETC_ICON='\ue799 '
-#POWERLEVEL9K_DIR_PATH_HIGHLIGHT_BOLD=true
-
+ZSH_THEME="spaceship"
+SPACESHIP_PROMPT_ADD_NEWLINE="false"
+SPACESHIP_USER_SHOW="always"
+SPACESHIP_DIR_TRUNC="0"
+SPACESHIP_CHAR_SYMBOL=" > "
+# SPACESHIP_CHAR_SYMBOL="🐈"
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
 # a theme from this variable instead of looking in ~/.oh-my-zsh/themes/
@@ -40,19 +37,24 @@ ZSH_THEME="gnzh"
 # Uncomment the following line to disable bi-weekly auto-update checks.
 # DISABLE_AUTO_UPDATE="true"
 
+# Uncomment the following line to automatically update without prompting.
+# DISABLE_UPDATE_PROMPT="true"
+
 # Uncomment the following line to change how often to auto-update (in days).
 # export UPDATE_ZSH_DAYS=13
 
+# Uncomment the following line if pasting URLs and other text is messed up.
+# DISABLE_MAGIC_FUNCTIONS=true
+
 # Uncomment the following line to disable colors in ls.
 # DISABLE_LS_COLORS="true"
-
-# Uncomment the following line to disable auto-setting terminal title.
-# DISABLE_AUTO_TITLE="true"
-
-# Uncomment the following line to enable command auto-correction.
+# Uncomment the following line to disable auto-setting terminal title.  
+# DISABLE_AUTO_TITLE="true" Uncomment the following line to enable 
+# command auto-correction.
 # ENABLE_CORRECTION="true"
 
-# Uncomment the following line to display red dots whilst waiting for completion.
+# Uncomment the following line to display red dots whilst waiting for 
+# completion.
 # COMPLETION_WAITING_DOTS="true"
 
 # Uncomment the following line if you want to disable marking untracked files
@@ -79,11 +81,13 @@ ZSH_THEME="gnzh"
 plugins=(git)
 
 source $ZSH/oh-my-zsh.sh
+# Load colors from grc
 [[ -s "/etc/grc.zsh" ]] && source /etc/grc.zsh
-alias vi='nvim'
-alias vim='nvim'
-alias ra='ranger'
-alias xc='xclip -selection clipboard'
+# Load zsh syntax highlighting
+[[ -s "$HOME/Tools/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" ]] && 
+	source $HOME/Tools/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+# Load vi-mode
+# source $HOME/.oh-my-zsh/plugins/vi-mode/vi-mode.plugin.zsh
 # User configuration
 
 # export MANPATH="/usr/local/man:$MANPATH"
@@ -105,7 +109,24 @@ alias xc='xclip -selection clipboard'
 # plugins, and themes. Aliases can be placed here, though oh-my-zsh
 # users are encouraged to define aliases within the ZSH_CUSTOM folder.
 # For a full list of active aliases, run `alias`.
-#
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
+
+alias vi="nvim"
+alias ls="exa"
+alias ll="exa -lh"
+alias la="exa -lah"
+alias cat="bat"
+alias grep="rg"
+alias xc="xclip -selection clipboard"
+alias neofetc="neofetch --disable gpu"
+alias fuck="sudo"
+alias ra="ranger"
+alias rm-eclipse="rm ~/pmd-eclipse.log"
+alias rm-ghidra="rm -rf ~/ghidra_scripts"
+alias my-ip="dig +short myip.opendns.com @resolver1.opendns.com"
+alias ipython="ipython --colors=linux"
+alias youtube-mp3="youtube-dl --extract-audio --audio-format mp3"
+alias cl="clear"
+

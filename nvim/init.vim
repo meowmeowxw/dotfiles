@@ -11,17 +11,15 @@ Plug 'scrooloose/nerdtree'
 	autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && 
 	\ b:NERDTree.isTabTree()) | q | endif
 Plug 'numirias/semshi', {'do': ':UpdateRemotePlugins'}
-Plug 'liuchengxu/eleline.vim'
+Plug 'meowmeowxw/eleline.vim'
 	let g:airline_powerline_fonts = 1
 Plug 'tpope/vim-fugitive'
 Plug 'gruvbox-material/vim', {'as': 'gruvbox-material'}
+    let g:gruvbox_material_background='medium'
 Plug 'liuchengxu/vista.vim'
 	let g:vista#renderer#enable_icon = 1
-Plug 'Yggdroot/indentLine'
-    let g:indentLine_char_list = ['|', '¦', '┆', '┊']
-    let g:indentLine_setColors = 0
 Plug 'justinmk/vim-syntax-extra/'
-
+Plug 'joshdick/onedark.vim'
 call plug#end()
 
 " Nvim behaviour
@@ -29,8 +27,7 @@ syntax on
 filetype plugin on
 set background=dark
 set termguicolors
-let g:gruvbox_material_background='medium'
-colorscheme gruvbox-material
+colorscheme onedark
 set hls!
 set laststatus=2
 set tabstop=4
@@ -41,7 +38,8 @@ set number
 set splitbelow
 set splitright
 set noshowmode
-set cursorline
+set scrolloff=50
+"set cursorline
 set colorcolumn=80
 set number relativenumber
 "

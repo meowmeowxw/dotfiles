@@ -129,4 +129,6 @@ alias my-ip="dig +short myip.opendns.com @resolver1.opendns.com"
 alias ipython="ipython --colors=linux"
 alias youtube-mp3="youtube-dl --extract-audio --audio-format mp3"
 alias cl="clear"
-
+alias doom="emacs -nw"
+alias pwndbg="gdb --init-command=~/.pwndbg --nh -q"
+alias gef="gdb --init-command=~/.gef --nh -q"

@@ -1,0 +1,10 @@
+add_newline = false
+[directory]
+truncation_length = 0
+truncation_to_repo = false
+[character]
+symbol = " >"
+[username]
+disabled = false
+show_always = true
+style_user = "bold yellow"

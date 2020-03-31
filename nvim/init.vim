@@ -15,11 +15,24 @@ Plug 'meowmeowxw/eleline.vim'
 	let g:airline_powerline_fonts = 1
 Plug 'tpope/vim-fugitive'
 Plug 'gruvbox-material/vim', {'as': 'gruvbox-material'}
-    let g:gruvbox_material_background='medium'
+    let g:gruvbox_material_background = 'medium'
 Plug 'liuchengxu/vista.vim'
-	let g:vista#renderer#enable_icon = 1
-Plug 'justinmk/vim-syntax-extra/'
-Plug 'joshdick/onedark.vim'
+	let g:vista#renderer#enable_icon = 0
+"Plug 'justinmk/vim-syntax-extra/'
+Plug 'meowmeowxw/onedark.vim'
+    let g:onedark_terminal_italics = 1
+Plug 'petRUShka/vim-sage'
+Plug 'daeyun/vim-matlab'
+Plug 'sainnhe/sonokai'
+    let g:sonokai_style = 'atlantis'
+    let g:sonokay_enable_italic = 1
+Plug 'sainnhe/edge'
+    let g:edge_style = 'neon'
+Plug 'rhysd/vim-grammarous'
+Plug 'sheerun/vim-polyglot'
+Plug 'terryma/vim-multiple-cursors'
+Plug 'junegunn/fzf.vim'
+
 call plug#end()
 
 " Nvim behaviour
@@ -39,7 +52,7 @@ set splitbelow
 set splitright
 set noshowmode
 set scrolloff=50
-"set cursorline
+set cursorline
 set colorcolumn=80
 set number relativenumber
 "
@@ -66,10 +79,6 @@ inoremap {;<CR> {<CR>};<ESC>O
 " Tricks
 au BufEnter * if &buftype == 'terminal' | :startinsert | endif
 autocmd StdinReadPre * let s:std_in=1
-"augroup project
-"	autocmd!
-"    autocmd BufRead,BufNewFile *.h,*.c set filetype=c.doxygen
-"augroup END
 "
 " Relative line numbers in normal mode, absolute line numbers in insert mode
 augroup numbertoggle
@@ -95,6 +104,9 @@ endfunction
 function SemshiDark()
 	hi semshiAttribute guifg=#40f972
 	hi semshiSelected guifg=#c1c1c1 guibg=#333333
+    hi semshiImported gui=bold
+    hi semshiUnresolved guifg=#f25445 gui=bold
+    hi semshiBuiltin guifg=#f49f02
 endfunction
 
 if &background ==# 'light'
@@ -105,6 +117,7 @@ endif
 "
 " Template for different files type
 autocmd BufNewFile *.c r $HOME/.config/nvim/templates/t.c
-autocmd BufNewFile *.py r $HOME/.config/nvim/templates/t.py
-autocmd BufNewFile *.sh r $HOME/.config/nvim/templates/t.sh
+"autocmd BufNewFile *.py r $HOME/.config/nvim/templates/t.py
+"autocmd BufNewFile *.sh r $HOME/.config/nvim/templates/t.sh
 "
+

@@ -103,8 +103,6 @@ endfunction
 function SemshiDark()
     hi semshiAttribute guifg=#40f972
     hi semshiSelected guifg=#c1c1c1 guibg=#333333
-	hi semshiAttribute guifg=#40f972
-	hi semshiSelected guifg=#c1c1c1 guibg=#333333
     hi semshiImported gui=bold
     hi semshiUnresolved guifg=#f25445 gui=bold
     hi semshiBuiltin guifg=#f49f02

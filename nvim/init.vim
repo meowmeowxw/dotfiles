@@ -11,6 +11,7 @@ Plug 'scrooloose/nerdtree'
 	autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && 
 	\ b:NERDTree.isTabTree()) | q | endif
 Plug 'numirias/semshi', {'do': ':UpdateRemotePlugins'}
+    map <F2> :Semshi rename 
 Plug 'meowmeowxw/eleline.vim'
 	let g:airline_powerline_fonts = 1
 Plug 'tpope/vim-fugitive'
@@ -35,6 +36,8 @@ Plug 'terryma/vim-multiple-cursors'
     let g:multi_cursor_exit_from_visual_mode = 1
 Plug 'liuchengxu/vim-clap'
     map <A-e> :Clap files<CR>
+Plug 'liuchengxu/space-vim-theme'
+Plug 'cohama/lexima.vim'
 
 call plug#end()
 
@@ -43,7 +46,7 @@ syntax on
 filetype plugin on
 set background=dark
 set termguicolors
-colorscheme onedark
+colorscheme space_vim_theme
 set hls!
 set laststatus=2
 set tabstop=4
@@ -67,8 +70,8 @@ map <C-K> :5winc +<CR>
 map <C-J> :5winc -<CR>
 map <C-H> :5winc ><CR>
 map <C-L> :5winc <<CR>
-map <C-R> :%norm.<CR>
-nmap GD gdcgn
+map <C-X> :%norm.<CR>
+nmap gD gdcgn
 "map <C-T> :vsplit term://zsh<CR>
 map D d$
 map Y y$
@@ -77,9 +80,9 @@ map Y y$
 nnoremap <Leader>c :set cursorline!<CR>
 nnoremap <Leader>r :g/^\s*$/d<CR>
 tnoremap <Esc> <C-\><C-n>
-inoremap { {}<left>
-inoremap {<CR> {<CR>}<ESC>O
-inoremap {;<CR> {<CR>};<ESC>O
+"inoremap { {}<left>
+"inoremap {<CR> {<CR>}<ESC>O
+"inoremap {;<CR> {<CR>};<ESC>O
 "
 " Tricks
 au BufEnter * if &buftype == 'terminal' | :startinsert | endif
@@ -122,7 +125,7 @@ endif
 "
 " Template for different files type
 autocmd BufNewFile *.c r $HOME/.config/nvim/templates/t.c
-"autocmd BufNewFile *.py r $HOME/.config/nvim/templates/t.py
+autocmd BufNewFile *.py r $HOME/.config/nvim/templates/t.py
 "autocmd BufNewFile *.sh r $HOME/.config/nvim/templates/t.sh
 "
 

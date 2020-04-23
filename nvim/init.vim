@@ -4,7 +4,7 @@ Plug 'neoclide/coc.nvim', {'do': './install.sh'}
 Plug 'mhinz/vim-startify'
 Plug 'ryanoasis/vim-devicons'
 Plug 'scrooloose/nerdtree'
-	map <C-N> :NERDTreeToggle<CR>
+    map <C-N> :NERDTreeToggle<CR>
 	autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && 
 	\ !exists("s:std_in") | exe 'NERDTree' argv()[0] | wincmd p | ene | 
 	\ exe 'cd '.argv()[0] | endif
@@ -129,3 +129,32 @@ autocmd BufNewFile *.py r $HOME/.config/nvim/templates/t.py
 "autocmd BufNewFile *.sh r $HOME/.config/nvim/templates/t.sh
 "
 
+" CoC config
+let g:coc_global_extensions = [
+            \ 'coc-python',
+            \ 'coc-snippets',
+            \ 'coc-tsserver',
+            \ 'coc-eslint',
+            \ 'coc-prettier',
+            \ 'coc-json'
+            \ ]
+" Use <C-l> for trigger snippet expand.
+imap <A-l> <Plug>(coc-snippets-expand)
+" Use <C-j> for select text for visual placeholder of snippet.
+vmap <A-j> <Plug>(coc-snippets-select)
+" Use <C-j> for jump to next placeholder, it's default of coc.nvim
+let g:coc_snippet_next = '<a-j>'
+" Use <C-k> for jump to previous placeholder, it's default of coc.nvim
+let g:coc_snippet_prev = '<a-k>'
+" Use <C-j> for both expand and jump (make expand higher priority.)
+imap <A-j> <Plug>(coc-snippets-expand-jump)
+inoremap <silent><expr> <TAB>
+      \ pumvisible() ? coc#_select_confirm() :
+      \ coc#expandableOrJumpable() ? "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" :
+      \ <SID>check_back_space() ? "\<TAB>" :
+      \ coc#refresh()
+function! s:check_back_space() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
+let g:coc_snippet_next = '<tab>'

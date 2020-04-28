@@ -29,31 +29,33 @@ pwndbg() {
 }
 
 dotfiles() {
-    echo "[*] installing dotfiles"
+    echo "[*] installing dotfiles";
     git clone https://github.com/meowmeowxw/dotfiles ~/Tools/dotfiles;
 }
 
 neovim() {
-    echo "[*] installing neovim"
-    mkdir -p ~/.config/nvim/
+    echo "[*] installing neovim";
+    mkdir -p ~/.config/nvim/;
     curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs \
-    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-    cp ~/Tools/dotfiles/nvim/init.vim ~/.config/nvim/init.vim
+    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim;
+    cp ~/Tools/dotfiles/nvim/init.vim ~/.config/nvim/init.vim;
 }
 
 pwntools() {
-    echo "[*] installing pwntools"
-    python3 -m pip install --upgrade pip
-    python3 -m pip install --upgrade git+https://github.com/Gallopsled/pwntools.git@dev
+    echo "[*] installing pwntools";
+    python3 -m pip install --upgrade pip;
+    python3 -m pip install --upgrade git+https://github.com/Gallopsled/pwntools.git@dev;
 }
 
 python() {
-    echo "[*] installing python3 useful libraries"
-    python3 -m pip install --upgrade pip
-    python3 -m pip install --user ${PKG_PYTHON[*]}
+    echo "[*] installing python3 useful libraries";
+    python3 -m pip install --upgrade pip;
+    python3 -m pip install --user ${PKG_PYTHON[*]};
 }
 
 radare2;
 pwndbg;
 dotfiles;
 neovim;
+pwntools;
+python;

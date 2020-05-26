@@ -94,21 +94,21 @@ augroup END
 "
 " Adjusts colors in semshi for python
 function SemshiLight()
-	hi semshiImported guifg=#e06411
-	hi semshiSelf guifg=#33990a
-	hi semshiAttribute guifg=#770a99
-	hi semshiParameter guifg=#1b4eba
-	hi semshiParameterUnused guifg=#a82678
-	hi semshiGlobal guifg=#d8671c
-	hi semshiBuiltin guifg=#d31fd3
-	hi semshiFree guifg=#c44082
-	hi semshiSelected guifg=#3d3d38 guibg=#f2f076
-	hi semshiUnresolved guifg=#dd7418
+    hi semshiImported guifg=#e06411
+    hi semshiSelf guifg=#33990a
+    hi semshiAttribute guifg=#770a99
+    hi semshiParameter guifg=#1b4eba
+    hi semshiParameterUnused guifg=#a82678
+    hi semshiGlobal guifg=#d8671c
+    hi semshiBuiltin guifg=#d31fd3
+    hi semshiFree guifg=#c44082
+    hi semshiSelected guifg=#3d3d38 guibg=#f2f076
+    hi semshiUnresolved guifg=#dd7418
 endfunction
 
 function SemshiDark()
-	hi semshiAttribute guifg=#40f972
-	hi semshiSelected guifg=#c1c1c1 guibg=#333333
+    hi semshiAttribute guifg=#40f972
+    hi semshiSelected guifg=#c1c1c1 guibg=#333333
     hi semshiImported gui=bold
     hi semshiUnresolved guifg=#f25445 gui=bold
     hi semshiBuiltin guifg=#f49f02

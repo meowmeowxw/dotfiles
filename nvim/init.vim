@@ -45,22 +45,22 @@ call plug#end()
 " Nvim behaviour
 syntax on
 filetype plugin on
-set background=dark
+set background = dark
 set termguicolors
 colorscheme onedark
 set hls!
-set laststatus=2
-set tabstop=4
-set softtabstop=4
-set shiftwidth=4
+set laststatus = 2
+set tabstop = 4
+set softtabstop = 4
+set shiftwidth = 4
 set expandtab
 set number
 set splitbelow
 set splitright
 set noshowmode
-" set scrolloff=50
+set scrolloff = 5
 set cursorline
-set colorcolumn=80
+set colorcolumn = 80
 set number relativenumber
 "
 " Custom Shortcuts

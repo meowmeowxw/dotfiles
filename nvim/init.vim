@@ -36,7 +36,14 @@ Plug 'terryma/vim-multiple-cursors'
 " Maybe this is a better multi cursors but I need to test it
 "Plug 'mg979/vim-visual-multi', {'branch': 'master'}
 Plug 'liuchengxu/vim-clap'
-    map <A-e> :Clap files<CR>
+    map <space>cb :Clap buffers<CR>
+    map <space>cc :Clap colors<CR>
+    map <space>cf :Clap files<CR>
+    map <space>cj :Clap jumps<CR>
+    map <space>cm :Clap marks<CR>
+    map <space>ct :Clap tags<CR>
+    map <space>cw :Clap windows<CR>
+    map <space>cy :Clap yanks<CR>
 Plug 'liuchengxu/space-vim-theme'
 Plug 'rhysd/vim-grammarous'
 Plug 'rrethy/vim-hexokinase', { 'do': 'make hexokinase' }
@@ -44,6 +51,7 @@ Plug 'rrethy/vim-hexokinase', { 'do': 'make hexokinase' }
 call plug#end()
 
 " Nvim behaviour
+" let mapleader = " "
 syntax on
 filetype plugin on
 set background=dark
@@ -268,7 +276,7 @@ nnoremap <silent> <space>a  :<C-u>CocList diagnostics<cr>
 " Manage extensions.
 nnoremap <silent> <space>e  :<C-u>CocList extensions<cr>
 " Show commands.
-nnoremap <silent> <space>c  :<C-u>CocList commands<cr>
+nnoremap <silent> <space>l  :<C-u>CocList commands<cr>
 " Find symbol of current document.
 nnoremap <silent> <space>o  :<C-u>CocList outline<cr>
 " Search workspace symbols.
@@ -284,3 +292,4 @@ inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm() : "\<C-g>u\<CR
 " Startify bookmark
 let g:startify_bookmarks = [{'c': '~/.config/nvim/init.vim'},
             \ {'z': '~/.zshrc'}]
+

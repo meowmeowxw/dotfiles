@@ -39,6 +39,7 @@ Plug 'liuchengxu/vim-clap'
     map <A-e> :Clap files<CR>
 Plug 'liuchengxu/space-vim-theme'
 Plug 'rhysd/vim-grammarous'
+Plug 'rrethy/vim-hexokinase', { 'do': 'make hexokinase' }
 
 call plug#end()
 
@@ -280,3 +281,6 @@ nnoremap <silent> <space>k  :<C-u>CocPrev<CR>
 nnoremap <silent> <space>p  :<C-u>CocListResume<CR>
 " Automatic new line when enter is pressed after brackets
 inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm() : "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
+" Startify bookmark
+let g:startify_bookmarks = [{'c': '~/.config/nvim/init.vim'},
+            \ {'z': '~/.zshrc'}]

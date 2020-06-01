@@ -5,11 +5,11 @@ Plug 'mhinz/vim-startify'
 Plug 'ryanoasis/vim-devicons'
 Plug 'scrooloose/nerdtree'
     map <C-N> :NERDTreeToggle<CR>
-	autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && 
-	\ !exists("s:std_in") | exe 'NERDTree' argv()[0] | wincmd p | ene | 
-	\ exe 'cd '.argv()[0] | endif
-	autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && 
-	\ b:NERDTree.isTabTree()) | q | endif
+    autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && 
+                \ !exists("s:std_in") | exe 'NERDTree' argv()[0] | wincmd p | ene | 
+                \ exe 'cd '.argv()[0] | endif
+    autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && 
+                \ b:NERDTree.isTabTree()) | q | endif
 Plug 'numirias/semshi', {'do': ':UpdateRemotePlugins'}
     map <F2> :Semshi rename 
 Plug 'meowmeowxw/eleline.vim'
@@ -37,7 +37,8 @@ Plug 'terryma/vim-multiple-cursors'
 "Plug 'mg979/vim-visual-multi', {'branch': 'master'}
 Plug 'liuchengxu/vim-clap'
     map <space>b :Clap buffers<CR>
-    map <space>cc :Clap colors<CR>
+    map <space>c :Clap colors<CR>
+    map <space>e :Clap filer<CR>
     map <space>f :Clap files<CR>
     map <space>j :Clap jumps<CR>
     map <space>m :Clap marks<CR>
@@ -48,6 +49,7 @@ Plug 'liuchengxu/vim-clap'
 Plug 'liuchengxu/space-vim-theme'
 Plug 'rhysd/vim-grammarous'
 Plug 'rrethy/vim-hexokinase', { 'do': 'make hexokinase' }
+Plug 'matze/vim-move'
 " Plug 'hardcoreplayers/spaceline.vim'
 "    let g:spaceline_seperate_style = 'arrow'
 "    let g:spaceline_colorscheme = 'space'

@@ -36,17 +36,21 @@ Plug 'terryma/vim-multiple-cursors'
 " Maybe this is a better multi cursors but I need to test it
 "Plug 'mg979/vim-visual-multi', {'branch': 'master'}
 Plug 'liuchengxu/vim-clap'
-    map <space>cb :Clap buffers<CR>
+    map <space>b :Clap buffers<CR>
     map <space>cc :Clap colors<CR>
-    map <space>cf :Clap files<CR>
-    map <space>cj :Clap jumps<CR>
-    map <space>cm :Clap marks<CR>
-    map <space>ct :Clap tags<CR>
-    map <space>cw :Clap windows<CR>
-    map <space>cy :Clap yanks<CR>
+    map <space>f :Clap files<CR>
+    map <space>j :Clap jumps<CR>
+    map <space>m :Clap marks<CR>
+    map <space>p :Clap providers<CR>
+    map <space>t :Clap tags<CR>
+    map <space>w :Clap windows<CR>
+    map <space>y :Clap yanks<CR>
 Plug 'liuchengxu/space-vim-theme'
 Plug 'rhysd/vim-grammarous'
 Plug 'rrethy/vim-hexokinase', { 'do': 'make hexokinase' }
+" Plug 'hardcoreplayers/spaceline.vim'
+"    let g:spaceline_seperate_style = 'arrow'
+"    let g:spaceline_colorscheme = 'space'
 
 call plug#end()
 
@@ -70,6 +74,7 @@ set noshowmode
 set scrolloff=5
 set cursorline
 set colorcolumn=80
+set nofoldenable
 set number relativenumber
 "
 " Custom Shortcuts
@@ -138,7 +143,8 @@ let g:coc_global_extensions = [
             \ 'coc-python',
             \ 'coc-snippets',
             \ 'coc-prettier',
-            \ 'coc-json'
+            \ 'coc-json',
+            \ 'coc-git'
             \ ]
 
 " TextEdit might fail if hidden is not set.
@@ -272,21 +278,21 @@ set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
 
 " Mappings using CoCList:
 " Show all diagnostics.
-nnoremap <silent> <space>a  :<C-u>CocList diagnostics<cr>
+nnoremap <silent> <space>ca  :<C-u>CocList diagnostics<cr>
 " Manage extensions.
-nnoremap <silent> <space>e  :<C-u>CocList extensions<cr>
+nnoremap <silent> <space>ce  :<C-u>CocList extensions<cr>
 " Show commands.
-nnoremap <silent> <space>l  :<C-u>CocList commands<cr>
+nnoremap <silent> <space>cl  :<C-u>CocList commands<cr>
 " Find symbol of current document.
-nnoremap <silent> <space>o  :<C-u>CocList outline<cr>
+nnoremap <silent> <space>co  :<C-u>CocList outline<cr>
 " Search workspace symbols.
-nnoremap <silent> <space>s  :<C-u>CocList -I symbols<cr>
+nnoremap <silent> <space>cs  :<C-u>CocList -I symbols<cr>
 " Do default action for next item.
-nnoremap <silent> <space>j  :<C-u>CocNext<CR>
+nnoremap <silent> <space>cj  :<C-u>CocNext<CR>
 " Do default action for previous item.
-nnoremap <silent> <space>k  :<C-u>CocPrev<CR>
+nnoremap <silent> <space>ck  :<C-u>CocPrev<CR>
 " Resume latest coc list.
-nnoremap <silent> <space>p  :<C-u>CocListResume<CR>
+nnoremap <silent> <space>cp  :<C-u>CocListResume<CR>
 " Automatic new line when enter is pressed after brackets
 inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm() : "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
 " Startify bookmark

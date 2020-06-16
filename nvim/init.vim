@@ -2,16 +2,19 @@ call plug#begin('~/.local/share/nvim/plugged')
 
 Plug 'neoclide/coc.nvim', {'do': './install.sh'}
 Plug 'mhinz/vim-startify'
+	let g:startify_bookmarks = [{'c': '~/.config/nvim/init.vim'},
+				\ {'f': '~/.config/fish/config.fish'},
+				\ {'z': '~/.zshrc'}]
 Plug 'ryanoasis/vim-devicons'
 Plug 'scrooloose/nerdtree'
-    map <C-N> :NERDTreeToggle<CR>
+    map <space>n :NERDTreeToggle<CR>
     autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && 
                 \ !exists("s:std_in") | exe 'NERDTree' argv()[0] | wincmd p | ene | 
                 \ exe 'cd '.argv()[0] | endif
     autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && 
                 \ b:NERDTree.isTabTree()) | q | endif
 Plug 'numirias/semshi', {'do': ':UpdateRemotePlugins'}
-    map <F2> :Semshi rename 
+    autocmd FileType python map <F2> :Semshi rename
 Plug 'meowmeowxw/eleline.vim'
 	let g:airline_powerline_fonts = 1
 Plug 'tpope/vim-fugitive'
@@ -40,19 +43,20 @@ Plug 'liuchengxu/vim-clap'
     map <space>c :Clap colors<CR>
     map <space>e :Clap filer<CR>
     map <space>f :Clap files<CR>
+    map <space>g :Clap grep<CR>
     map <space>j :Clap jumps<CR>
     map <space>m :Clap marks<CR>
     map <space>p :Clap providers<CR>
     map <space>t :Clap tags<CR>
     map <space>w :Clap windows<CR>
     map <space>y :Clap yanks<CR>
+    map <space>p :Clap proj_tags<CR>
 Plug 'liuchengxu/space-vim-theme'
 Plug 'rhysd/vim-grammarous'
 Plug 'rrethy/vim-hexokinase', { 'do': 'make hexokinase' }
 Plug 'matze/vim-move'
-" Plug 'hardcoreplayers/spaceline.vim'
+"Plug 'hardcoreplayers/spaceline.vim'
 "    let g:spaceline_seperate_style = 'arrow'
-"    let g:spaceline_colorscheme = 'space'
 
 call plug#end()
 
@@ -62,13 +66,15 @@ syntax on
 filetype plugin on
 set background=dark
 set termguicolors
-colorscheme onedark
+colorscheme gruvbox-material
 set hls!
 set laststatus=2
 set tabstop=4
+set smartindent
+"set cindent
 set softtabstop=4
 set shiftwidth=4
-set expandtab
+set noexpandtab
 set number
 set splitbelow
 set splitright
@@ -90,6 +96,10 @@ map D d$
 map Y y$
 "map <C-T> :vsplit term://zsh<CR>
 nmap gD gdcgn
+nmap <space>v :vsplit term://zsh<CR>
+nmap <space>x :split term://zsh<CR>
+nmap <space>s $]}V[{
+nmap <space>S V[{
 nmap ]t :tabn<CR>
 nmap [t :tabp<CR>
 nnoremap <Leader>c :set cursorline!<CR>
@@ -298,6 +308,4 @@ nnoremap <silent> <space>cp  :<C-u>CocListResume<CR>
 " Automatic new line when enter is pressed after brackets
 inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm() : "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
 " Startify bookmark
-let g:startify_bookmarks = [{'c': '~/.config/nvim/init.vim'},
-            \ {'z': '~/.zshrc'}]
 
